@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Prático — Marketing Digital para Franqueados Apolar</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1a7a6e;
+    --teal-light: #e0f5f2;
+    --teal-mid: #9FE1CB;
+    --amber: #e8a020;
+    --amber-light: #fdf3dc;
+    --black: #0e0e0e;
+    --white: #ffffff;
+    --gray: #6b6b6b;
+    --border: #e5e2da;
+    --bg: #f8f7f4;
+    --chatgpt-green: #10a37f;
+    --chatgpt-green-light: #e8f7f3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--black); min-height: 100vh; }
+
+  /* HERO */
+  .hero { background: var(--black); padding: 52px 48px 44px; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(232,160,32,0.15) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--white); line-height: 1.1; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero h1 span { color: var(--amber); }
+  .hero-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.55); max-width: 560px; line-height: 1.6; margin-bottom: 28px; }
+  .hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pill { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: rgba(255,255,255,0.65); }
+
+  /* TABS */
+  .tabs-wrap { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .tabs { display: flex; max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .tab-btn { padding: 18px 28px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray); background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+  .tab-btn:hover { color: var(--black); }
+  .tab-btn.active-claude { color: var(--teal); border-bottom-color: var(--teal); }
+  .tab-btn.active-chatgpt { color: var(--chatgpt-green); border-bottom-color: var(--chatgpt-green); }
+  .tab-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-claude { background: var(--teal); }
+  .dot-chatgpt { background: var(--chatgpt-green); }
+
+  /* CONTENT */
+  .content { max-width: 900px; margin: 0 auto; padding: 40px 48px 80px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* STEP */
+  .step { background: var(--white); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 20px; overflow: hidden; }
+  .step-header { display: flex; align-items: center; gap: 16px; padding: 24px 28px; border-bottom: 1px solid var(--border); }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; flex-shrink: 0; color: var(--white); }
+  .num-claude { background: var(--teal); }
+  .num-chatgpt { background: var(--chatgpt-green); }
+  .num-shared { background: var(--gray); }
+  .step-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--black); }
+  .step-body { padding: 24px 28px; }
+  .step-body p { font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 14px; }
+  .step-body p:last-child { margin-bottom: 0; }
+  .step-body strong { color: var(--black); font-weight: 500; }
+
+  /* INSTR LIST */
+  .instr-list { list-style: none; padding: 0; margin: 14px 0; }
+  .instr-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #555; line-height: 1.6; padding: 8px 0; border-bottom: 1px solid #f5f5f5; }
+  .instr-list li:last-child { border-bottom: none; }
+  .instr-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; color: var(--white); }
+  .n-claude { background: var(--teal); }
+  .n-chatgpt { background: var(--chatgpt-green); }
+
+  /* NOTE */
+  .note { background: #fffbf0; border: 1px solid #e8d08a; border-left: 4px solid var(--amber); border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #5c4a1a; line-height: 1.6; }
+  .note::before { content: '📌 '; }
+
+  /* PROMPT BOX */
+  .prompt-wrap { margin: 16px 0; }
+  .prompt-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 8px 16px; color: var(--white); border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: space-between; }
+  .label-claude { background: var(--teal); }
+  .label-chatgpt { background: var(--chatgpt-green); }
+  .label-shared { background: #333; }
+  .copy-btn { background: rgba(255,255,255,0.2); border: none; border-radius: 6px; padding: 4px 10px; font-size: 11px; color: var(--white); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
+  .copy-btn:hover { background: rgba(255,255,255,0.35); }
+  .copy-btn.copied { background: rgba(255,255,255,0.4); }
+  .prompt-text { background: #141414; border-radius: 0 0 8px 8px; padding: 20px 22px; font-family: 'Courier New', monospace; font-size: 12.5px; line-height: 1.8; color: #c8ffd4; white-space: pre-wrap; word-break: break-word; max-height: 380px; overflow-y: auto; }
+
+  /* SCENARIO */
+  .scenarios { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+  .scenario-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .scenario-header { padding: 14px 16px; display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; user-select: none; }
+  .sh-claude { background: var(--teal-light); color: var(--teal); }
+  .sh-chatgpt { background: var(--chatgpt-green-light); color: var(--chatgpt-green); }
+  .scenario-toggle { margin-left: auto; font-size: 16px; transition: transform 0.2s; }
+  .scenario-card.open .scenario-toggle { transform: rotate(180deg); }
+  .scenario-body { display: none; padding: 0 16px 16px; }
+  .scenario-card.open .scenario-body { display: block; }
+
+  /* DOWNLOAD / SHEETS */
+  .download-section { background: #f9f7f4; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 16px 0; }
+  .download-section h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 12px; }
+  .sheet-btn { display: flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid #c3e6cb; border-radius: 10px; padding: 12px 16px; text-decoration: none; color: #1a6b3c; font-size: 13px; font-weight: 500; transition: all 0.2s; margin-top: 8px; }
+  .sheet-btn:hover { background: #e8f5e9; border-color: #1a6b3c; }
+
+  /* SHARED BADGE */
+  .shared-badge { display: inline-flex; align-items: center; gap: 6px; background: #f1efe8; border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: var(--gray); font-weight: 500; margin-bottom: 14px; }
+
+  /* FINAL */
+  .final-box { background: var(--black); border-radius: 16px; padding: 32px; margin-top: 32px; text-align: center; }
+  .final-box h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--amber); margin-bottom: 16px; }
+  .final-box p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 8px; }
+  .final-box .highlight-line { font-size: 14px; color: var(--white); font-weight: 500; margin-top: 16px; font-style: italic; }
+
+  /* USO RECORRENTE */
+  .recorrente { background: var(--teal-light); border: 1px solid var(--teal-mid); border-radius: 12px; padding: 20px 24px; margin: 16px 0; }
+  .recorrente h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+  .recorrente p { font-size: 13px; color: #0f4f46; line-height: 1.65; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 36px 24px 32px; }
+    .hero h1 { font-size: 26px; }
+    .content { padding: 28px 20px 60px; }
+    .tabs { padding: 0 20px; }
+    .tab-btn { padding: 14px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Apolar Imóveis · Franqueados</div>
+  <h1>Seu assistente de<br><span>marketing digital</span></h1>
+  <p class="hero-sub">Configure uma vez e use toda semana — analise suas campanhas, descubra o que está funcionando e saiba exatamente onde colocar seu dinheiro.</p>
+  <div class="hero-pills">
+    <span class="pill">📊 Meta Ads</span>
+    <span class="pill">💡 Sem precisar de agência</span>
+    <span class="pill">🎯 Decisões mais rápidas</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active-claude" onclick="switchTab('claude', this)">
+      <span class="tab-dot dot-claude"></span>Claude.ai
+    </button>
+    <button class="tab-btn" onclick="switchTab('chatgpt', this)">
+      <span class="tab-dot dot-chatgpt"></span>ChatGPT
+    </button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ===== ABA CLAUDE ===== -->
+<div id="tab-claude" class="tab-panel active">
+
+  <!-- PASSO 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-claude">1</div>
+      <div class="step-title">Acesse o Claude.ai e crie seu projeto</div>
+    </div>
+    <div class="step-body">
+      <p>Abra o navegador e acesse <strong>claude.ai</strong>. Faça login com sua conta.</p>
+      <ul class="instr-list">
+        <li><span class="instr-num n-claude">1</span>No menu lateral esquerdo, clique em <strong>"Projetos"</strong></li>
+        <li><span class="instr-num n-claude">2</span>Clique em <strong>"Novo projeto"</strong></li>
+        <li><span class="instr-num n-claude">3</span>Dê o nome: <strong>Assistente de Marketing — Apolar</strong></li>
+        <li><span class="instr-num n-claude">4</span>Clique em <strong>"Instruções do projeto"</strong></li>
+      </ul>
+      <div class="note">O projeto guarda o contexto permanentemente. Toda vez que você abrir, o assistente já sabe quem você é e como funciona seu negócio — não precisa explicar de novo.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-claude">2</div>
+      <div class="step-title">Configure o assistente com o contexto da sua loja</div>
+    </div>
+    <div class="step-body">
+      <p>Cole o prompt abaixo no campo <strong>"Instruções do projeto"</strong> e clique em Salvar. Esse é o "treinamento" do seu assistente.</p>
+      <div class="prompt-wrap">
+        <div class="prompt-label label-claude">
+          <span>▶ INSTRUÇÕES DO PROJETO — COLE NA ÍNTEGRA</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-instrucoes-claude')">Copiar</button>
+        </div>
+        <div class="prompt-text" id="prompt-instrucoes-claude">🏠 ASSISTENTE DE MARKETING DIGITAL — FRANQUEADO APOLAR
+
+Você é o assistente de marketing digital de um dono de imobiliária franqueada da Apolar Imóveis.
+
+Seu papel é ajudar esse empresário a ter controle total e uma visão estratégica das suas ações digitais de forma simples, prática e direta — para que ele tome decisões melhores sem precisar ser especialista em marketing.
+
+🎯 PERFIL DO USUÁRIO
+- Dono de imobiliária, com foco no dia a dia da operação
+- Investe em campanhas no Meta Ads (Instagram e Facebook) e portais imobiliários
+- Quer entender o que está funcionando, o que está desperdiçando dinheiro e onde investir mais
+- Não tem tempo para análises complexas — precisa de respostas diretas e acionáveis
+- Toma decisões com base em dados simples e visuais
+
+🏢 CONTEXTO DO NEGÓCIO
+- Imobiliária franqueada da Apolar Imóveis
+- Foco em captação de imóveis para locação e vendas na região
+- Canais de marketing: Meta Ads (Instagram/Facebook) e portais (ZAP, VivaReal, OLX)
+- Leads chegam via formulário e WhatsApp
+- Equipe de corretores que atende os leads gerados pelas campanhas
+
+📊 INDICADORES QUE VOCÊ MONITORA
+- Investimento total por campanha e por canal
+- CPL — Custo por Lead (quanto custou cada contato)
+- Número de leads gerados por campanha
+- CTR — Taxa de clique nos anúncios
+- Taxa de conversão lead → visita agendada
+- Visitas agendadas e contratos fechados
+- Performance por público segmentado
+
+🎯 PRINCÍPIOS DE ATUAÇÃO
+- Nunca dê respostas genéricas
+- Sempre seja direto: o que está bom, o que está ruim, o que fazer
+- Traduza números em decisões práticas
+- Use linguagem simples — evite jargões técnicos
+- Quando faltar informação, faça no máximo 2 perguntas antes de responder
+- Pense como um sócio que cuida do marketing, não como um consultor distante
+
+⚙️ FORMATO DE RESPOSTA PADRÃO
+Sempre que analisar dados de campanha, estruture assim:
+
+1. STATUS GERAL — Saudável / Atenção / Crítico
+2. O QUE ESTÁ FUNCIONANDO — campanhas e públicos para manter ou aumentar
+3. O QUE ESTÁ DESPERDIÇANDO DINHEIRO — onde cortar ou pausar
+4. ONDE COLOCAR O DINHEIRO — redistribuição sugerida
+5. PLANO DE AÇÃO — o que fazer essa semana, nas próximas 2 semanas e no próximo mês
+6. PERGUNTA ESTRATÉGICA — uma reflexão para o dono pensar
+
+🚨 REGRAS
+- Sempre priorize o menor CPL com maior qualidade de lead
+- Nunca sugira aumentar orçamento em campanha com CPL acima da meta sem justificativa clara
+- Sempre mostre qual campanha trouxe mais resultado pelo menor custo
+- Se os dados estiverem incompletos, diga o que está faltando antes de analisar</div>
+      </div>
+      <div class="note">Após colar, clique em "Salvar". Seu assistente está configurado e pronto para usar toda semana.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 4 — DASHBOARD -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-shared">4</div>
+      <div class="step-title">Gere o dashboard visual das suas campanhas</div>
+    </div>
+    <div class="step-body">
+      <div class="shared-badge">✦ Mesmo para Claude e ChatGPT</div>
+      <p>Acesse a planilha de exemplo abaixo, copie os dados e cole na conversa. Em seguida, envie o prompt para gerar seu dashboard:</p>
+
+      <div class="download-section">
+        <h4>📊 Planilha de exemplo — Campanhas Meta Ads</h4>
+        <a class="download-btn" style="display:flex;align-items:center;gap:10px;background:white;border:1px solid #c3e6cb;border-radius:10px;padding:12px 16px;text-decoration:none;color:#1a6b3c;font-size:13px;font-weight:500;margin-top:8px;" href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,UEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAAaAAAAeGwvX3JlbHMvd29ya2Jvb2sueG1sLnJlbHO9lEFqwzAQRfc5hZh9LdtJ01IsZxMK2bbpAYQ9tkxsSUiTtrl91aY0DgTRhfFKzJfm/4cYpth8Dj17R+c7owVkSQoMdWXqTrcC3vbPd4+wKRfFC/aSwhOvOutZ6NFegCKyT5z7SuEgfWIs6nDTGDdICqVruZXVQbbI8zRdczf2gPLKk+1qAW5XZ8D2J4v/8TZN01W4NdVxQE03IjiFXgyG0rVIAn7Ks5glwQz4bYZ8SgZPpx79BeJcx+KXU8Z/GHfwCpEuBH9SgPs+on+xmhkmj8HczwyzjMGsZ4ZZxWAeJh1ZJR3Wr+TCDhhP7lj+hVkU/GozlF9QSwcIVESKRfYAAABQBAAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAAPAAAAeGwvd29ya2Jvb2sueG1sjVRLbtswEN33FAT3jiT/ahuRg1S2kQD9BHaarClqFLGmSIGk/GnRwxRd9A7d+mId0XbqpoXRhSSSM3zz5s2MLq82pSQrMFZoFdPoIqQEFNeZUE8x/Xg/aw0osY6pjEmtIKZbsPRq/Opyrc0y1XpJ8L6yMS2cq0ZBYHkBJbMXugKFllybkjncmqfAVgZYZgsAV8qgHYb9oGRC0T3CyPwPhs5zwWGieV2CcnsQA5I5ZG8LUVk6vsyFhId9QoRV1XtWIu2ESU6D8TPtO0NSxpd1NUPvmOZMWsBEC73+kH4C7jAjJiUlGXMQDcPu0eUPCO3QE8PgYXPwIGBtf9ubrUe80UZ81soxueBGSxlTZ+pDNCTqBP+XZdEIdc9SezzcPAqV6XVMsUTbk/XaLx9F5gosYL8z6B7PbkA8FS6mg2jYpsSxdN4IFdNeiNdyYazzQTwKw0xWgPGaHSYUnGTka3b8EuUFnYOtS02mG+A13tQNabTeZsjBd4xDp5WwIpXI3YwEGsxt1mmwT3ESVlZMFcySCaBCBcuYPcFqn8HqvsS6VrtvUlgglTbkbvczlYKfEuucAeu9BJuutKx3P3bfNVlgOyomT5C6Z5D6Xr6jZlhbjs0mHBj0T3StUO+oKYCB/J3OGtoo2MH+3ImH/QSkY1iRizAMowYXNu6tdf57mBupcf3X7EiRGthPix8cSmojYvrldb/dTwb9dqt9HXVaUTTttd50ur3WbDqbYZskk2Q4+4pD5FFH+CR7/tYZ/CPMIV9ssZE3KM+Gg7z2nAJ02789teA4AONfUEsHCNgItGFVAgAAXQQAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAEwAAAHhsL3RoZW1lL3RoZW1lMS54bWzNV8Fy2yAQvfcrGO4Jkiw5sid2Dkk9PXSmM036AQghiQYhDdCk/vsisCUUOa7TOp36gGF5vF0e7GJf3/ysOXiiUrFGrGB4GUBABWlyJsoV/PawuUghUBqLHPNG0BXcUgVv1h+u8VJXtKbALBdqiVew0rpdIqSIMWN12bRUmLmikTXWZihLlEv8bGhrjqIgmKMaMwF36+Up65uiYITeNeRHTYV2JJJyrE3oqmKtgkDg2sT4xQLBQxcgXO9D/chpt051BsLlPbHx+yssNn8Muy8ly+yWS/CE+QoG9gPR+hr1AK6nuMJ+drgdIH+MJriwiBdXec8XOb4pjlJKaNjzWQAmxOxi6jsu0jDbc3og151ykyAJ4jHe459N8Issy5LFCD8b8PEEnwbzGEcjfDzgk2n8mZmZj/DJgJ9Ptb5azOMx3oIqzsTjwRPsT6aHFA3/dBCeGni6P/ABhbyb49YL/do9qvH3Rm4MwB6uuaQC6G1LC0wM7hbXmWQYgpZpUm1wzfjWBAkBqbBUVJsr0jnHS4q9Vc5E1AsTeuGsZuKYZ86M6/N5HpwhXxArT+0PGOf3esvpZ2UDUw1n+cYY7cDCevnbynShZexn3MhfVEo89NWOtlSgbVS3oyO8piIwoZ0t8VJ77KxUPuGsA55KOrs6jTR0heVE1jA5xoo8Fcx1Bbir4OE8ci6AIpjTvD9ezTj9SokG3J6+tq20bda1zstI4r+QW1U4pzu9w9OkSX+vjMe6mJ1PcJ82PoPiwZ8pjqY5w8V4BJ5NiEmUmOzFrSmJJtlNt26NUyVKCDAvzaNOtNtXK5W+w6pyW7OptH9axMAXJXEX/PkIZ2l4HkL0UgBaFEbPVyzD0Mw5koOz5wejQ5Fl5eY/LYDxiQUwfkupivelapxOi3fJ0ujoDvwsbbGuQNeYO8ck4e6p7tLsodnnpnsQuvy8cDWoS9Kd0SRqmHreOqp/X00HmdMTz+6Ngs7eSdDkgJ7JGeRE0/xCo58faPIfYG9Z/wJQSwcIO6HfCvQCAAACDQAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAANAAAAeGwvc3R5bGVzLnhtbO1bW5ObNhR+769g2LYvbRZh7o3tzC5rOn3pZJLNTGeaPmAj20wAuUJO7Pz6SghzMWiXXTu2N8WeXeAcnXM+fToSkkHDN5s4kj5DnIYoGcnqNZAlmMxQECaLkfzh3ntly1JK/CTwI5TAkbyFqfxm/MMwJdsIvl9CSCTqIUlH8pKQ1W+Kks6WMPbTa7SCCdXMEY59Qi/xQklXGPpByoziSBkAYCqxHybyeJisYy8mqTRD64SMZKMQSfzwR0CxmboscXcuCiiU32ECsR/JSmtho17453/XiLx+96PET65+vboC1wAIjM268cdfaNmfXn98lR3YP4GdVbfLogiK2vWiDEzmVcm5GA/nKCkpUXWZS8bD9Kv02Y+oSGXlZyhCWCKUdOolkyR+DHkJ14/CKQ6ZcO7HYbTl4kFmt/RxSluPu8oic/d7QUDd5Q0OOeVVh+DCzKdcQfAaMl3hTS8Jw4vpSPbyT9cgj3AWCsKCRlhDNyfWzZHCimrbDHvU2grCOt82ai3MSWthWJ5qnTqqemtMBp07wTMTRTtLt2hW9hS9ohn11lJd1T04anZgo3YYReWorcpcMh6ufEIgTjx6IeXn99sVHbMTel/lfrJyj5ReYH+rDozuBimKwoChWLi1xLrRXGPC3EzrCs3SLT1reqXi88BoE3dCQ7ZE84Cne/aRow1cw7NvWqKVCXbEaCVhUxHFR4xWEjYVUXzMaJ7nuHpbu3mT28nR61aMOqfIkontGRPndEzuCHtatOxAh5UpwgGdpe8GFjYb5CIpCP0FSvzow2okz/0ohXIhukNfkp1wPIzgnNAwOFws2ZGgFUODCEExPdnZMCDc81EjSNmCYSTHMAjXsSy83yi8+MnwkGW2AKmhcb07+849AZrOpNCyjzRVfkIzZQaj6D3z+9e8SBc6hRgPN/PmairJLuiij6VZfso95Rf+ahVtPcScZLdSLrjNitREN1G4SGK4V/AtRgTOSLa4zMTjob8rKC0RDr9S1+xWusgXc2wtSsIZE/H6yhKBG/IOEZ97oZi+YH91T4UF32ESZIGpLl3iMPl0j7ywUFOaVgUMKUKzTzDYgVyGATWtlFQ28z2mQMmT+lyecpz7RFXFVaZ2GfNywAx6MAIwz+5bPZgeTA+mB9ODeQ4YXbukO6WuXhQa/aLQDC4JjXNmMEp1+s4n89V5vPncefxm3oReBXQg9pc2qa/Rppe0DTrQdug66GHOZlQAcZWyneSSKDNKyrSesk6UmSVlek9ZJ8qskjKjSpn6YijjkU7HmF0yZlYZG5yDsZbh/1IoM3rKnkqZ2VN2QMd0Ssqss1P2Mkb/SpbZZ6fsgrPM6ik7zljWU9atY6qVdaZzds4ueDBrn2X0afYAZXY/yzikZ6r9TxlP5mzQ/5ZxrIV5d8oEvzN+Zyvz9qlZP5o9+QbQ3zM7DmZayZkKzk7ayx7NtAMp+64fmoCnkdb2rOn/wprx7VPte+udVk/ZATfOnjIBZUr+PL3ylmzxbJ09Wi+kEtsLMpL/ZDv0ogpr03UYkTDhV0rTwEVx7O/Kq0bNQBMaSH+Dfwojs2ZkthqtMYbJbFvYWDUb/SGbWiy7Zme12b2FmLVXYeLUTPhGlJLM/BVmemRNt4GBm1/ixbT22jvIPsx6X1O+9tzUiGwAYH/tGqYTxREhENkwebvGFtan3MLVhs1u1djAFnizhTZM3q5xAfuK4rTbOPTTXlPH0TTTFDCa7xbZ15R7LfY1pgmAyJsIW7m/p1HT4s397lyLW1ucIQ/ngahNxdkrqqk4ewFwXQHqYrNMoxWKrSbNmu52pzRbWxgn07W2givKHa5r07CcarfRNNdtj8Pii3qwWOM4Ak2xwXNfU24bayAw2be11xebv5r1cZz2jAdA09qxaZpIU+5e7N5PmTdBK5Sb//bGb2U3rivlzv/xf1BLBwgEZUlfowUAAD5AAABQSwMEFAAICAgAkWWsXAAAAAAAAAAAAAAAABgAAAB4bC93b3Jrc2hlZXRzL3NoZWV0MS54bWy9WN9zozYQfu9fwfB+BoGNccb2zZ1/tJ3JNTfNXW+mbwrIsSaAqJDtJH99VxJgIYib6eTyksDqY/fbb1cy7PzjY545R8IryoqFi0a+65AiYSkt7hfu92/bD7HrVAIXKc5YQRbuE6ncj8tf5ifGH6o9IcIBB0W1cPdClFeeVyV7kuNqxEpSwMqO8RwLuOX3XlVyglP1UJ55ge9HXo5p4WoPV/w1PthuRxOyZskhJ4XQTjjJsAD61Z6WVePtMX2Vv5TjE6Ta8DEorvVK6w+Ne/5ymnBWsZ0YJSyvqfWznHmzTp6PPPh/ntAEUj1SWamgcZYnr8kyx/zhUH4A3yUodUczKp5Uwu5yrvx/5c6OZoLwLyyFIu9wVhFYK/E9uSXie6nWxTf2FQzNsrece/XDy3lKoR6SmcPJbuF+QldbFEqIQvxFyakyrp1qz05bIHjIcNX4U8ZfOU2vaUG61j/ZacWy30ANaNSFK/ihXvibgGyNgdP7PXC8JjvRPi3w3S3JSCJIaj53cxAZRLl9yu9Y1jpIyQ4fMiE5QDjGG/sRKC/cQgqagUtWyhArkmUyUddJJPZ38B+NXeeZsfw2wRnIhHzfuP9DPW5bpaDX+IkdlC71qtxbd4w9SJP068syqSykwCWW+7Bm4ToYrEdyZnO+14861T91Sc4Vk47N66Y2W9UzUOxaCVDhB03FfuHGo2g6i+LppFUJavIbkYoDabA+QyWa+1p7pkW+JkeSAVqRMW3gXefmdYIv5yBopf5KaTNcVrJ4tdPkUAmW16x0efY0TUkxGFbFzPEjcIT/tFD/K/EkyyOF1m6CWErztvGiOl4wEA+peJ5OUx82WODlnLOTwxVFHVUr0gaS0oZoNOkx0OhGfU2yx6qXGmQso8meqVRQeLYC63Hpz72j5FcjPjcIrzasbMPaNmxsw9YweJBnm2xwIVk0e/NkA0UjMJJFVrINok3WNqxtw8Y2bA1DJ9nwQrKz0fTtku1EHV+IGqC3DKs1HqvsQ0PjwNK4QbQa24a1bdjYhq1h6GQ7uZTt+I1TnSgSYyPV0Eq1jxh3Eas+YtJFrPuIqIvY9BHTLmLbR8QtoqNf9L4bMlK8JgavmaWgRkQKUWjm04l1RK36oJnvW6C1Bk0N0Ad/5AexJaaGxeYZYXna9lkjNCzn9H3lnCpiM5OYvfk0BPmGDKENWg2BenrWIGSAQE+rvzc1qnPmWrtkO0B7PKxn/L56xv1CW7vzc9xrvSAe+RZq1UeFtpxxrz1Bzcje6vEr5BxgHQ3LOXtfOWf9OlsH1WcNQWFHBhRbMqwGYVYXr2f9BpU73gq5mf33hh8g/sL5KffMe0oq49nFto/QGoPGhhAT69hbDYEiu0drkH2GhlYHbmrcRU0HmAf+C6Jeeif+GaKiXr0D+0WxxnTOyKmt6QAmsiVFQ8coiuwubXAXd/4Q8eAFTd/51RsF/XLbb0s1xjwmx8EotFUdQNnvTDXGPk1tTYPXaDpA/IVfJ3TpDf9naBr2y23/PtWYzlEZjEfIFnUIFtuqhoO9Gs5sXcPX6DpA3v6Z8ozP45zwezXYqECQQyG/hl3Dakye5EeBbQ+utsGQfXwFnxLyI+LsfjkvOS3ETammis6eYDkOPY+k7ntDqtZyS9oq7hmnz6wQOFuRQhBuDBWOhAua9Bc8PXL7gvk9hcCZmmT56guN6wbRN4KV6ov9jgloHnW5V8MxCZggFCPkB2EUBP4YNsCOMTG85LUjvkPplLgk/JY+E1WSyphhqdFfPQJB9W07+3Ed6eKGq+gpOxXf9qS4gQyhjzmFBNVsduGWjAuOqQDWGU4ePhXpjz0V7TTRSTk25nYJ1GHFcjnkreToregIui4pFF9Sa5Q8WxJWUtKMGrQqWyWAk9LdDtQuxJby6hyqNd+k6eZ43prLOUtTPXOE7jCu4VJ71Ob22gwGt+2EfPkvUEsHCMw2CTawBQAAZRcAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQyLnhtbL1Z23KjOBB936+geJp9GHMxxthleyqxja/ZTE3mUrVvCsgxFUCskJ3L168uGLCkzbi2UnlJTHM43eo+3djS6MtzlhpHiMsE5WPT6dimAfMIxUn+MDZ/fA8/B6ZREpDHIEU5HJsvsDS/TP4YPSH8WO4hJAYlyMuxuSekGFpWGe1hBsoOKmBO7+wQzgChl/jBKgsMQcwfylLLtW3fykCSm4JhiC/hQLtdEsEZig4ZzIkgwTAFhIZf7pOiPLE9xxfxxRg80aWe4mmFOBN3aj7HU/iyJMKoRDvSiVBWhaaucmANztb5jN3/x+T06FKPCauUeyLLoktWmQH8eCg+U+6CZuo+SRPywhdsTkac/ys2dklKIL5BMS3yDqQlpPcK8ADvIPlR8PvkO/pKDafb1mRkVQ9PRnFC68EiMzDcjc0rZ7gdMAQH/EzgU9n6bJR79BTS+A4pKE903LjASbxNcnhu/Yaepihd0mRQnY5Ngg/Vjb8hzdrJgJOHPQ1xC3ekfpqA+zuYwojA+Izx9kBS6ubuJbtHac0Qwx04pIQFQf0hfLIfacxjM2cJTSknKpiPKUxTtlDTiBh2RR34nmm8IpTdRSClaXJsu3X9F39ctrKEbsELOvDEVHdZb90j9MhMjNdmZeLLYAkuAOvDKgrTANR6hE00zbV41Cj/qUrSVIwRtz+fihNyzdBiV5mgWfiVxGQ/NoOO3x/4Qb9XZ4kWZQlZymnQ1PpKS3G6rhKNRJK38AhTiubBtG2UXazNOnM+GdGElvwvS20KirJVvehQEpRVUYny7JM4hrnWLfeZgWcaI/2f5Px/SV5YeViiBY0bsNS8rz+38udq/Dn++/sbVP66On/e+/tz6oTaH7RC55RSR5dT1+byFtIRAxwQMBlh9GRgXnbhV6isdsXk2rWVCAT2pGcRpBKVsjS6YuaLdWEpuoI+XFLzceL2R9aRxVdhrmuMVVmmimWmWOaKJVQsC8WyVCwrxbJWLBvFsm1bLJrYOrvuG9l1gnfOriui8NvZDaTs1pg6u4plpljmiiVULAvFslQsK8WyViwbxbJtW86y231Lu/47Z7croui3szuQsqvBdO1zzFSHcc4xMx3GPcfMdZjuOSbUYbxzzEKDcSRfSx1P7xyz0mH8c8xa50vK4UbHI82IrQbTQM4k4r0hEdfpsNf2u6rE45G1B1xXbkENRMrBVEBEI+dV+W1JSDMBYlOkRg0CT4bNNTDX8yVUWKG8Fsru2K5U5IWGzJGVuVSjd72OK+lupfXoSlxrXfSyYjQYydm2gritpHu2XjG9D1ZMj4c2aEcmjYNrFaIoRkCcbjtPjiKZCmW3UL6jKGuugTk9eZCFFWrwG8loyAKpPEtd9PJ80bqTp8daF7o0hTYajCS7be9yvfgfrBdfGR+eFP21ClH04is96gQ9WS6+prE8dcJoYEEgTb3Q1w8YSSwaqp48XtTQu71OT/K30vqTX2xrjT9ZLRqI1J9bAQnaJenqxdL/YLH01eEi9d61BiK13rSvtucgkMXS13RV4Cti0cAcRw4q7Gtni/zVRcOlvIw0sXftji99U1ppHcozaK1xKOluo4FIKdj2Lx8uwQfrJVCHi9QP1xqI9PVsGigd6ruyXAJNW9EJpOhFg1PIwkA7XGypyAudT1kvauw9p+NLK1zpHUpaWOv8SXLRQGS5CIhrtzMe6OUy+GC5DERoTjs0+TdRhXGbX5yVpWnJnQEiUHPf/bj5NPWG0+DPkbXjLdZX3kwVhfcGxcwbzmoKz+mro+gCkrk3nNckvi+/acOKovcfFFc/59+uFvNPoTcMaxr22nOlrlpcEMvCGy5qkq4i3N9k9RTK0hsuG5Zux1O+mF+4ppU3XLXW5PTld+sFS1p7w3WTXqk+mwsINt5wUxPIvxLbyhNtYrX2vzKIH/hucEn1fchZh5gta7Ndz7eHZbs73ArehmYyKnCSk9uCH7kYewjYWVGzYf+gbOHXljtYN98e4eQV5QSkU5gTiFv7g0eISRKpNyxxHnED8ENCHad8n9/m3Y5FX4sLggq+33ePCO15/nHPjw4YoOc4gePYbtd3Xdujr6gdQkR/y6rPPw6FUYAC4rvkFfLpU7Y2+Pm5SLWb6VSX9ca4aTCKW8y9x+gp/76H+S1dIR0/OKEL5AdXY7NAmGCQEBp1CqLHqzz+tU9IfdRixBi0TjUiWocpytgJWMnOJfKzhM6KhO1p2k0mG0uEioRVhhdbZCXkCTDiZLej2c5JmOCycVWbb+N4fmwm6mSE4licyFB1tD7Tj4JRmOvPbWf0sj4+nPwLUEsHCCrj8By5BgAAghwAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQzLnhtbL1YXW/iOBR9318R5X3IBxBCBYymUJiVOtvRtrMj7ZubGGI1ibO2gba/fq/tEILtWVWrqi8luTm5H+ceu7mefX6uSu+AGSe0nvvRIPQ9XGc0J/Vu7v94WH9KfY8LVOeopDWe+y+Y+58Xv82OlD3xAmPhgYOaz/1CiOYqCHhW4ArxAW1wDU+2lFVIwC3bBbxhGOXqpaoM4jBMggqR2tcerthbfNDtlmR4RbN9hWuhnTBcIgHp84I0/OTtOX+Tv5yhI5R6yqeX4ko/6fxFI8tfRTJGOd2KQUarNjW7ymkwvajzmcX/z1M0hlIPRHYqPjmrsrdUWSH2tG8+ge8GmHokJREvqmB/MVP+vzNvS0qB2TeaQ5O3qOQYnjVoh++x+NGo5+KBfgfD6XGwmAXty4tZTqAfMjOP4e3c/xJdbVKJUIC/CD7y3rXHC3pcQ377EvGTO2XcMJLfkhpfWv+kxyUtvwIZoNO5L9i+ffA3BtZOBkZ2BaR4i7eie1ugx3tc4kzg/MLj3V6UEOb+pXqkZechx1u0L4VMAuJRdrIfIOe5X0tCS/BJGxljictSFup7mcT+DgGSke+9UlrdZ6gEmqIw7N3/oV43rZLQW/RC94qY9qlcW4+UPkmT9BvKNqkyJMENkuuwzcL3EFgP+JzN+V6/6vF/2pacOyYd969PzVkrzUCzWyaAhZ8kF8XcTwfJZJqkk3HHEjTlK5aUQ9JgfYVWnO5boqkm+RYfcAlolUzfBt51bcFF8MUMCOXqr6S2RA3vdS/bc0GrNivdnoLkOa6dYVXMCj1DjvBLavXLxYtsjyRau4mVVN83XtzGix3xouT94yVtvKEr3uj9403aeBMXn6GSmm6j3kyRQIsZo0ePqRboqLrjXSApnWFoxdfYk7Z0ilZOVmFQr4wlVwTXCoWXOZgPi3E4Cw4yvxZz3WGC1rK0LCvLcmNZ1pZl07cEUH7HQfyRHMQ6i0mfg8jgwIEZGpilCzO9xKxcmPEl5saFGV1i1g7MyPCzcdUVd5gLvof/wXccDeS+9q6UD1Vq035mQ4NxDYmGClMrTJyGhjaXLSrsoaaJwbnL03QQTQzaW9i0BwsHYZwazDthsdGfjaPAkZv60QdTP1KZXSx4QzjXGpL0Koym5q6w1KAo7aFSg4WV7SgeDmJj3dy0nkaXxJvLa+2ExQbvjuoSN+/jD+Z9bCvCUOD12BbqNDV5H9uKHxosrByOhuEgMZbYzdipeHOrcaJic7NxlPcLwScfTHxiS8JY09eJLfgkNolPbMEnJvG2ozgZRCbviVPwkbnTOGGRSbyjvKmb+MkHEz+xJJGYnxYTW6gTS/ETW/HmfrtyOBrGA/M/68S9xRtdXDthZhc3dnm/Ij79YOJTSxKJ+T2TWkK1BZ/ago9M3m0/o9EgNr56blK34E3e3TBjl9w4qjO/aoLeV3WF2U7NexwI29dyHvN71vNArgfAMxzme0ZqcdeowxOvgPma1Lvz6L2zhvHOco+7rhWUkVdaC1QucS0w680WB8wEyewHgT5Z+IbYjkDgUk3soZIJ04LQNzDjqmnhkQoQi7os1CGABIyjKI2iMB4mcRyOQKtbSoX7UdCdZOwbGJ8bzO7JK1bS5r1RXZ1wtJNQ1N52I67vSRd3TEXP6bF+KHB9BxWCbhmBAtUR1NxvKBMMERjMH0uUPX2p858FEd2hiZcz1DufyKAPS1rJsywuTxjqC0JXDZHTQHhm8mzJaENkZ1RTNStrRYCXk+0W2K7FmjB+DtWZ7/L85nBeiosZzXN9tgLq6F3Dpfaozd11PxjcdgeBi38BUEsHCCKRnepIBQAATBQAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQ0LnhtbL1Y227bOBB9368Q9NR9qHWzJNuwXSS+tUC6KZpegH1jJMomIolairaTfP0OSVmWKW4bLIK8JNLw6MzMmaGs4fTDY5FbB8xqQsuZ7Q1c28JlQlNSbmf292/r9yPbqjkqU5TTEs/sJ1zbH+Z/TI+UPdQ7jLkFBGU9s3ecVxPHqZMdLlA9oBUuYSWjrEAcbtnWqSuGUSofKnLHd93IKRApbcUwYS/hoFlGErykyb7AJVckDOeIQ/j1jlT1ie0xfRFfytARUj3F0wlxqVZaPm/Y4ytIwmhNMz5IaNGE1s9y7Iwv8nxk/v9j8kJI9UBEpfwTWZG8JMsCsYd99R64K1DqnuSEP8mE7flU8n9hVkZyjtlnmkKRM5TXGNYqtMV3mH+v5Dr/Rr+A4bTszKdO8/B8mhKoh4jMYjib2VfeZBMLhAT8IPhYd66tekePa4hvn6P6RCeNG0bSG1LiS+tXelzQ/COIAX06sznbNwt/Y1DtZGBku4MQb3DG26c5ur/DOU44Ti8Yb/c8Bzd3T8U9zVuGFGdon3MRBPij7GQ/QMwzuxSC5sBJK+FjgfNcJGpbicB+AgfR0LaeKS3uEpSDTJ7rdu7/ko/rViHoDXqieylMsyr21j2lD8IkeF1RJpmGELhCYh82UdgWAusBn6M536tHrfqfpiTnigni7vWpOGvZM1DsRglQ4SdJ+W5mjwZRPI5GcdiqBEX5iIXkEDRYn6EUp/tGaKpEvsEHnANaBtO1AbvKzblwPp+CoLX8K6TNUVV3qpfsa06LJipVnh1JU1wa3UqfBXqEGOE/KeX/mj+J8gihFY3vCmle15/f+PMN/rzR6/sLG3+Byd/w9f1Fjb/I5C96fX9x4y/+z/o5qm3UyxtxNJ8yerSYLLnyqjqsdSRaNXB7/hX21MsqxF5MvcQgX+FL7MBa7Qh4uAbzYR4FU+cg4msw1y3GaSyLnmXZs6x6lnXPsulaHEi/1cD/hQZ+PBD7+lVl8FUgcVeGoSaDARN4l5iFCTO+xCxNmPASszJhtHjWppg1no0JE7WYC8mDX0nuvb7kgQxt3I0s1hRXEC+QmFJivPHI1TRvUG4HpdduaWAK3MFYg60a2LgDcweur1V5bfDoaZiNIb2RWfjhGws/lJFd7HitRa8VJOrk5/tDXXcFgh+HM2rka7obiOJBoKFWDdNQk11veINDT2/4fnKxa5Y9fGPZw15DxFrPXIf9LvUDT9c97HffSH/HmJjCwTjShA/N/a7B1gaP3kgT3pCebxY+emPho35L6L9wkaHffV33qN9+sfbGWhqIRoOR5m4Vmftdg60NDj1tT2wMyQ3NssdvLHssI/O9TmhD/T3TYM5tmsE8gFqmu++f310Hk+voz6mTyT6PQ70qDcXwFxSLYLJoKQJPf0f9JoirH6uvV5vVu2UwWbYsUFU/8vVf7YYp/A3TKpisWiZZeI1o/YKk1sFk3ZKE+m5sxW8/rJzOh2aB2VaOXDWUb1+KkcjuWM8zsXr+DIcRm5GS31by/MLawYhLyu15+t325uHWAnN5+wFNGXmmJUf5ApcwxHc+tw+YcZL0Fxw13H9GbEvAcS6HZlc2LVPtqW5gzJQf0PeUQ+vKy52cwwUg9LyR54HcEWzuIUiUUcrNS057mLCvYIKtMLsjz1i+3+rOtCwPGZrhwGtu2ynTtgTFLZPeU3osv+1weQsZwi5iBBKUp0Azu6KMM0RgNr7PUfJwVaY/d4S35xZWylDniCCBOixoIY6TajHklxeCLisihgT3rOTZktCKiMrIoipV1lIAKyVZBmqXfE1YfXbVmm/TdHU4vxjmU5qm6ngDuqNzDZeKUZnb664zuG3P4ub/AlBLBwi+tt9hZwUAAM8TAABQSwMEFAAICAgAkWWsXAAAAAAAAAAAAAAAABQAAAB4bC9zaGFyZWRTdHJpbmdzLnhtbLVXzW4bNxC+9ykGQgu4gO1dyT8JDFkGvZIdoZKlSooPvVG7tMxml1RIruAUOQQI0KKHAkWTUy9G2kPQAj6lvfS6b+InyCN0uCvIOhWjAAV8WNscfvPzzTfD5slNlsJCGCu1Oq7Vd8MaCBXrRKrZce3p5GzncQ2s4yrhqVbiuPZC2NpJ67OmtQ7QVNnj2rVz86MgsPG1yLjd1XOh8D9X2mTc4a9mFti5ETyx10K4LA0aYXgYZFyqGsQ6Vw5hQ4TNlXyei6j6y6ODWqtpZatZohzZOY8RHK+xwixErTXq9NikeDPqDqDdgWFndDYY9dlF1IH7V28hYv0hu3jCxtDvTBiw9rgZuFYz8Bf+x6VsrlNuoJsVHxZC2vKqM8PV81xyiIRyRsNLGApT3OlEHwGbGplCI2wckq7/ati1cN4Zse4Y2gPvdPHToD0g2XZVImOeaEM6fYnFop3sC8eJVxrJi/fF7xoWFvrFnxaYcrsk27HjLreko4Op/6iAiIlZCOtkhtXRMNGOp7A1+vxLku3H29t3wJxQdLh2xYJEgzbFe17Ckgx7vgHgXBgsIi0V6N1v4OsDU+5kQisTi2XGIeGQeUN0z/KUZBjlFhM41wa8p7AVDXu0JOJB4FMub8qspDKTTpAMJ/wGPRUQaeX1xzPLQ99//8ultJJIS7ZErgKmMbm8Hek7E6hqCadVY2iKDzcy2wwKQ3OGO41g1kpFLn1fpNdYicx3GSbVGeS3dYaWV1+QfvFHIjUMtXFcEgOszoK4krFEWgua2RpayVWWUEOsDmMyy1hjrohMbaOk956wfudigiI6GK3UvtTr/0HwN5T5C50Jz5KIZ3OurmlMGUy/FU4uPkHzyGrXzfy3Lf6mVjb185h4djIis4XscCkQXh12P0EYVq1HO83nbjnd2JxjI5S5tUsO0AWeLuwMq02M5MG3iFsUrm+04jDOibr+YL2ieYQMNbGkKkM5Joc8t9yckAxG2NtmhnxWM6hK5uUExtTJ8DARiCFWjQan2Lp+cYVlX29QPZaiAMU09z7evv1rmQ8ajwcoWBCgTP7Y7jKaGK8ttF7ixp1zr3es+KF4XW28xa+nvW5EWx6HxT/TVMa0THyd8xS3DRzMSTWQieNRz40UrnhnJPbN3sHOwQFwpe02RLmRTk5pZL+/+3n1AywlNnsX+eW1zQ9YEBnIdUHvaf0MQ3omoP7FZj5Ug43vkP1YJ76HXiM/JtNS+X9qNK5g5UNmmTsQYMRMYkdsw164cxiWud0gmmUoG2VTHK0SuQ1ybeZswxUuM7g1U3enJf/gCslRxoUdm+I1FmtlxcxfusHK78M5xbWPFk3nctB7WvXNuIMdha3oPWCno26PPtTH+LRVG+2X1OcO8QlV4kMdtsL6/as34aMg3CeOfVXcxZh2bGi/T27DQqc5biiYdOIbcYndQOzHiF3fJ2Mv91hbXYAt4D3YBHMPtuoHiNmokzFX0yB+mHz4hQ82ZK/8jhMfUksH9mGr0UAH9kKyA2cCX8oYq0Q/YqdzGItZMBFruQ6sda1/AVBLBwjdwt+egwQAAHoRAABQSwMEFAAICAgAkWWsXAAAAAAAAAAAAAAAAAsAAABfcmVscy8ucmVsc62SwU7DMAyG73uKKvc13UAIoaa7TEi7ITQewCRuG7WJo8SD8vZEExIMjbLDjnF+f/5ipd5MbizeMCZLXolVWYkCvSZjfafEy/5xeS82zaJ+xhE4R1JvQypyj09K9MzhQcqke3SQSgro801L0QHnY+xkAD1Ah3JdVXcy/mSI5oRZ7IwScWdWoth/BLyETW1rNW5JHxx6PjPiVyKTIXbISkyjfKc4vBINZYYKed5lfbnL3++UDhkMMEhNEZch5u7IFtO3jiH9lMvpmJgTurnmcnBi9AbNvBKEMGd0e00jfUhM7p8VHTNfSotanvzL5hNQSwcIhZo0mu4AAADOAgAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAARAAAAZG9jUHJvcHMvY29yZS54bWydUstugzAQvPcrkO9gIGlUISBSW+XUSJWSqlVvrtkQt7axbCeEv68Ngb5y6m13Zjz7cr48CR4cQRvWyAIlUYwCkLSpmKwL9LRdhTcoMJbIivBGQoE6MGhZXuVUZbTR8KgbBdoyMIEzkiajqkB7a1WGsaF7EMRETiEduWu0INalusaK0A9SA07jeIEFWFIRS7A3DNXkiM6WFZ0s1UHz3qCiGDgIkNbgJErwl9aCFubig575phTMdgouSkdyUp8Mm4Rt20btrJe6/hP8sn7Y9KOGTPpVUUBlfm4koxqIhSpwBtlQbmSeZ3f32xUq0zhdhPF1mKTbJM3m8yydveb413tvOMSNLv1CVXfiXjWBXlCBoZop625Z9uQPwOWcyPrgFl+CDJ82vWSC/Ek5MXbtjr9jUN12zuMCNnYmzti/RxsN+soajsz/wTLui06p79oc3t6B2mGkKXGxZZbDAI/hn39ZfgJQSwcIxMO8cmIBAADjAgAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAAQAAAAZG9jUHJvcHMvYXBwLnhtbJ2QwW7CMAyG73uKKuLaJkQdQygN2jTthLQdOrRblSUuZGqTqHFRefsF0IDzfLJ/W5/tX6ynvssOMETrXUXmBSMZOO2NdbuKfNZv+ZJkEZUzqvMOKnKESNbyQXwMPsCAFmKWCC5WZI8YVpRGvYdexSK1Xeq0fugVpnLYUd+2VsOr12MPDilnbEFhQnAGTB6uQHIhrg74X6jx+nRf3NbHkHhS1NCHTiFIQW9p7VF1te1BsiRfC/EcQme1wuSI3NjvAd7PKygvC148FXy2sW6cmq/lolmU2d1Ek374AY205Gz2MtrO5FzQe9yJvb2YLeePBUtxHvjTBL35Kn8BUEsHCF6WAY/7AAAAnAEAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAEwAAAGRvY1Byb3BzL2N1c3RvbS54bWydzrEKwjAUheHdpwjZ21QHkdK0izg7VPeQ3rYBc2/ITYt9eyOC7o6HHz5O0z39Q6wQ2RFquS8rKQAtDQ4nLW/9pThJwcngYB6EoOUGLLt211wjBYjJAYssIGs5pxRqpdjO4A2XOWMuI0VvUp5xUjSOzsKZ7OIBkzpU1VHZhRP5Inw5+fHqNf1LDmTf7/jebyF7baN+Z9sXUEsHCOHWAICXAAAA8QAAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAEwAAAFtDb250ZW50X1R5cGVzXS54bWzNVclOwzAQvfcrolxR4rYghFDSHliOUIlyRsaeNKbxItst7d8zSaAqpQtRKuglVjzzlhnZ42S4kEUwB+uEVmnYi7thAIppLtQkDZ/H99FVOBx0kvHSgAswV7k0zL0314Q4loOkLtYGFEYybSX1+GsnxFA2pRMg/W73kjCtPCgf+ZIjHCS3kNFZ4YO7BW7XuggPg5s6r5RKQ2pMIRj1GCZllGzFWSjcHuBc8Q130aezGJFVjsuFcWe7FYyabAgIWVZW7m9HvBnYDqkCiHnEdlvBIRhR6x+oxASyKMhLWQx513b6qvU0RkvxkcvbIbwu2UxNZ5lgwDWbSYTEzlig3OUAHs1XayypUAf0PR4jqL+91h4qmgOCzi8LcMcutyL9RasrgCPV0r7e7yZW/A199E/Ex/mJ+Lj4Jx8upxb4k7c4fo9+QNe59/moB9FfDB90OrLaOHwiLDQv90uvREcGicB6sf8OrhSRunV/oRz6HHhTbTZzXsvW8jXNT/FOQqrnevABUEsHCFJ9oyuBAQAA3QcAAFBLAQIUABQACAgIAJFlrFxURIpF9gAAAFAEAAAaAAAAAAAAAAAAAAAAAAAAAAB4bC9fcmVscy93b3JrYm9vay54bWwucmVsc1BLAQIUABQACAgIAJFlrFzYCLRhVQIAAF0EAAAPAAAAAAAAAAAAAAAAAD4BAAB4bC93b3JrYm9vay54bWxQSwECFAAUAAgICACRZaxcO6HfCvQCAAACDQAAEwAAAAAAAAAAAAAAAADQAwAAeGwvdGhlbWUvdGhlbWUxLnhtbFBLAQIUABQACAgIAJFlrFwEZUlfowUAAD5AAAANAAAAAAAAAAAAAAAAAAUHAAB4bC9zdHlsZXMueG1sUEsBAhQAFAAICAgAkWWsXMw2CTawBQAAZRcAABgAAAAAAAAAAAAAAAAA4wwAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUABQACAgIAJFlrFwq4/AcuQYAAIIcAAAYAAAAAAAAAAAAAAAAANkSAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAAUAAgICACRZaxcIpGd6kgFAABMFAAAGAAAAAAAAAAAAAAAAADYGQAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQAFAAICAgAkWWsXL6232FnBQAAzxMAABgAAAAAAAAAAAAAAAAAZh8AAHhsL3dvcmtzaGVldHMvc2hlZXQ0LnhtbFBLAQIUABQACAgIAJFlrFzdwt+egwQAAHoRAAAUAAAAAAAAAAAAAAAAABMlAAB4bC9zaGFyZWRTdHJpbmdzLnhtbFBLAQIUABQACAgIAJFlrFyFmjSa7gAAAM4CAAALAAAAAAAAAAAAAAAAANgpAABfcmVscy8ucmVsc1BLAQIUABQACAgIAJFlrFzEw7xyYgEAAOMCAAARAAAAAAAAAAAAAAAAAP8qAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUABQACAgIAJFlrFxelgGP+wAAAJwBAAAQAAAAAAAAAAAAAAAAAKAsAABkb2NQcm9wcy9hcHAueG1sUEsBAhQAFAAICAgAkWWsXOHWAICXAAAA8QAAABMAAAAAAAAAAAAAAAAA2S0AAGRvY1Byb3BzL2N1c3RvbS54bWxQSwECFAAUAAgICACRZaxcUn2jK4EBAADdBwAAEwAAAAAAAAAAAAAAAACxLgAAW0NvbnRlbnRfVHlwZXNdLnhtbFBLBQYAAAAADgAOAJMDAABzMAAAAAA=" download="campanhas_meta_apolar.xlsx">
+          <span style="font-size:20px;">📥</span>
+          <div>
+            <div>Campanhas Meta Ads — Apolar (fictícia)</div>
+            <div style="font-size:11px;color:#6b6b6b;margin-top:2px;">Excel · Baixe, abra e copie os dados para a conversa</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="note">Como exportar do Meta Ads real: Gerenciador de Anúncios → Campanhas → Exportar → CSV. Depois cole o conteúdo direto na conversa antes do prompt abaixo.</div>
+
+      <div class="prompt-wrap">
+        <div class="prompt-label label-shared">
+          <span>▶ PROMPT — DASHBOARD DE MARKETING</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-dash-c')">Copiar</button>
+        </div>
+        <div class="prompt-text" id="prompt-dash-c">Com base nos dados de campanha acima, gere uma análise completa de marketing e entregue em HTML com visual moderno e profissional.
+
+A análise deve conter:
+
+1. SAÚDE GERAL DAS CAMPANHAS
+   Status geral: Saudável / Atenção / Crítico — com justificativa clara.
+
+2. PERFORMANCE POR CAMPANHA
+   Classifique cada campanha como Verde (ótima), Amarela (atenção) ou Vermelha (pausar), com barra de progresso do CPL vs meta.
+
+3. AS 2 CAMPANHAS MAIS EFICIENTES
+   Quais estão trazendo lead mais barato e com melhor qualidade — e por quê.
+
+4. AS 2 CAMPANHAS PARA REVISAR OU PAUSAR
+   Quais estão queimando orçamento sem resultado — com recomendação clara de ação.
+
+5. ONDE COLOCAR O DINHEIRO
+   Sugestão de redistribuição de orçamento para o próximo mês com base nos dados.
+
+6. PLANO DE AÇÃO em 3 horizontes:
+   - Esta semana (ajustes imediatos)
+   - Próximas 2 semanas (otimizações)
+   - Próximo mês (mudanças estratégicas)
+
+7. PERGUNTA ESTRATÉGICA
+   Uma pergunta para o franqueado refletir sobre suas campanhas.
+
+FORMATO:
+Entregue em um único arquivo HTML com:
+- Cards coloridos por status (verde, amarelo, vermelho)
+- Barras de progresso de CPL atual vs meta
+- Gráfico simples de investimento vs leads por campanha
+- Seção de alertas e recomendações em destaque
+- Layout objetivo e visual, pronto para apresentar na reunião semanal</div>
+      </div>
+      <div class="note">Quando o HTML aparecer: selecione todo o conteúdo → copie → cole num bloco de notas → salve como "dashboard-marketing.html" → abra no navegador.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 3 — CENÁRIOS -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-claude">4</div>
+      <div class="step-title">Use em perguntas do dia a dia</div>
+    </div>
+    <div class="step-body">
+      <div class="recorrente">
+        <h4>🔄 Rotina semanal recomendada</h4>
+        <p>Toda segunda-feira: exporte o relatório do Meta Ads em CSV → abra o projeto no Claude → cole os dados → envie o prompt de análise. Em 2 minutos você sabe exatamente o que fazer na semana.</p>
+      </div>
+      <p>Além do dashboard, você pode usar o assistente para perguntas rápidas do dia a dia:</p>
+      <div class="scenarios">
+
+        <div class="scenario-card" onclick="toggleScenario(this)">
+          <div class="scenario-header sh-claude">
+            <span>📉</span> CPL subiu e não sei por quê
+            <span class="scenario-toggle">▾</span>
+          </div>
+          <div class="scenario-body">
+            <div class="prompt-wrap">
+              <div class="prompt-label label-shared">
+                <span>▶ PROMPT</span>
+                <button class="copy-btn" onclick="copyPromptStop(event, this, 'sc1-c')">Copiar</button>
+              </div>
+              <div class="prompt-text" id="sc1-c">Meu CPL subiu de R$24 para R$38 essa semana. Não alterei nada nas campanhas. O que pode ter causado isso e o que devo fazer agora?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-card" onclick="toggleScenario(this)">
+          <div class="scenario-header sh-claude">
+            <span>💰</span> Quero saber onde colocar mais dinheiro
+            <span class="scenario-toggle">▾</span>
+          </div>
+          <div class="scenario-body">
+            <div class="prompt-wrap">
+              <div class="prompt-label label-shared">
+                <span>▶ PROMPT</span>
+                <button class="copy-btn" onclick="copyPromptStop(event, this, 'sc2-c')">Copiar</button>
+              </div>
+              <div class="prompt-text" id="sc2-c">Tenho R$2.000 sobrando no meu orçamento de marketing esse mês. Minhas campanhas ativas são: Captação Apartamentos Centro (CPL R$24, 45 leads), Captação Casas Zona Sul (CPL R$31, 28 leads) e Retargeting Site (CPL R$29, 18 leads). Onde devo colocar esse dinheiro extra?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-card" onclick="toggleScenario(this)">
+          <div class="scenario-header sh-claude">
+            <span>📊</span> Quero analisar minha campanha do mês
+            <span class="scenario-toggle">▾</span>
+          </div>
+          <div class="scenario-body">
+            <div class="prompt-wrap">
+              <div class="prompt-label label-shared">
+                <span>▶ PROMPT</span>
+                <button class="copy-btn" onclick="copyPromptStop(event, this, 'sc3-c')">Copiar</button>
+              </div>
+              <div class="prompt-text" id="sc3-c">Esse foi meu resultado do mês:
+- Investimento total: R$6.500
+- Leads gerados: 210
+- CPL médio: R$30,95
+- Visitas agendadas: 38
+- Contratos fechados: 5
+- Melhor campanha: Captação Apartamentos (CPL R$22)
+- Pior campanha: Branding Geral (CPL R$58, 0 contratos)
+
+Me dê uma análise completa e o que devo mudar no próximo mês.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="final-box">
+    <h3>Você agora tem um assistente de marketing</h3>
+    <p>Que já conhece sua loja e seu negócio</p>
+    <p>Que analisa suas campanhas e diz o que fazer</p>
+    <p>Que gera um dashboard visual em segundos</p>
+    <p class="highlight-line">Toda semana. Sem agência. Sem complicação.</p>
+  </div>
+
+</div><!-- fim tab claude -->
+
+
+<!-- ===== ABA CHATGPT ===== -->
+<div id="tab-chatgpt" class="tab-panel">
+
+  <!-- PASSO 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-chatgpt">1</div>
+      <div class="step-title">Acesse o ChatGPT e crie seu GPT personalizado</div>
+    </div>
+    <div class="step-body">
+      <p>Abra o navegador e acesse <strong>chatgpt.com</strong>. Faça login com sua conta.</p>
+      <ul class="instr-list">
+        <li><span class="instr-num n-chatgpt">1</span>No menu lateral esquerdo, clique em <strong>"Explorar GPTs"</strong></li>
+        <li><span class="instr-num n-chatgpt">2</span>Clique em <strong>"Criar"</strong> no canto superior direito</li>
+        <li><span class="instr-num n-chatgpt">3</span>Vá para a aba <strong>"Configurar"</strong></li>
+        <li><span class="instr-num n-chatgpt">4</span>No campo <strong>"Nome"</strong> escreva: <strong>Assistente de Marketing — Apolar</strong></li>
+        <li><span class="instr-num n-chatgpt">5</span>No campo <strong>"Descrição"</strong> escreva: <em>Analisa campanhas de marketing digital e gera recomendações práticas para donos de imobiliária</em></li>
+        <li><span class="instr-num n-chatgpt">6</span>Vá até o campo <strong>"Instruções"</strong></li>
+      </ul>
+      <div class="note">O GPT personalizado funciona como um assistente que já conhece sua loja. Você configura uma vez e usa toda semana sem precisar repetir nada.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-chatgpt">2</div>
+      <div class="step-title">Cole as instruções no campo "Instruções"</div>
+    </div>
+    <div class="step-body">
+      <p>No campo <strong>"Instruções"</strong>, cole o prompt completo abaixo e clique em <strong>Salvar → Somente eu</strong>:</p>
+      <div class="prompt-wrap">
+        <div class="prompt-label label-chatgpt">
+          <span>▶ INSTRUÇÕES DO GPT — COLE NA ÍNTEGRA</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-instrucoes-gpt')">Copiar</button>
+        </div>
+        <div class="prompt-text" id="prompt-instrucoes-gpt">🏠 ASSISTENTE DE MARKETING DIGITAL — FRANQUEADO APOLAR
+
+Você é o assistente de marketing digital de um dono de imobiliária franqueada da Apolar Imóveis.
+
+Seu papel é ajudar esse empresário a ter controle total e uma visão estratégica das suas ações digitais de forma simples, prática e direta — para que ele tome decisões melhores sem precisar ser especialista em marketing.
+
+🎯 PERFIL DO USUÁRIO
+- Dono de imobiliária, com foco no dia a dia da operação
+- Investe em campanhas no Meta Ads (Instagram e Facebook) e portais imobiliários
+- Quer entender o que está funcionando, o que está desperdiçando dinheiro e onde investir mais
+- Não tem tempo para análises complexas — precisa de respostas diretas e acionáveis
+- Toma decisões com base em dados simples e visuais
+
+🏢 CONTEXTO DO NEGÓCIO
+- Imobiliária franqueada da Apolar Imóveis
+- Foco em captação de imóveis para locação e vendas na região
+- Canais de marketing: Meta Ads (Instagram/Facebook) e portais (ZAP, VivaReal, OLX)
+- Leads chegam via formulário e WhatsApp
+- Equipe de corretores que atende os leads gerados pelas campanhas
+
+📊 INDICADORES QUE VOCÊ MONITORA
+- Investimento total por campanha e por canal
+- CPL — Custo por Lead (quanto custou cada contato)
+- Número de leads gerados por campanha
+- CTR — Taxa de clique nos anúncios
+- Taxa de conversão lead → visita agendada
+- Visitas agendadas e contratos fechados
+- Performance por público segmentado
+
+🎯 PRINCÍPIOS DE ATUAÇÃO
+- Nunca dê respostas genéricas
+- Sempre seja direto: o que está bom, o que está ruim, o que fazer
+- Traduza números em decisões práticas
+- Use linguagem simples — evite jargões técnicos
+- Quando faltar informação, faça no máximo 2 perguntas antes de responder
+- Pense como um sócio que cuida do marketing, não como um consultor distante
+
+⚙️ FORMATO DE RESPOSTA PADRÃO
+Sempre que analisar dados de campanha, estruture assim:
+
+1. STATUS GERAL — Saudável / Atenção / Crítico
+2. O QUE ESTÁ FUNCIONANDO — campanhas e públicos para manter ou aumentar
+3. O QUE ESTÁ DESPERDIÇANDO DINHEIRO — onde cortar ou pausar
+4. ONDE COLOCAR O DINHEIRO — redistribuição sugerida
+5. PLANO DE AÇÃO — o que fazer essa semana, nas próximas 2 semanas e no próximo mês
+6. PERGUNTA ESTRATÉGICA — uma reflexão para o dono pensar
+
+🚨 REGRAS
+- Sempre priorize o menor CPL com maior qualidade de lead
+- Nunca sugira aumentar orçamento em campanha com CPL acima da meta sem justificativa clara
+- Sempre mostre qual campanha trouxe mais resultado pelo menor custo
+- Se os dados estiverem incompletos, diga o que está faltando antes de analisar</div>
+      </div>
+      <ul class="instr-list" style="margin-top:16px;">
+        <li><span class="instr-num n-chatgpt">7</span>Clique em <strong>"Salvar"</strong> no canto superior direito</li>
+        <li><span class="instr-num n-chatgpt">8</span>Escolha <strong>"Somente eu"</strong> para manter privado</li>
+        <li><span class="instr-num n-chatgpt">9</span>O GPT aparecerá no menu lateral — clique para começar</li>
+      </ul>
+      <div class="note">Após salvar, seu assistente fica disponível no menu lateral. Basta clicar toda semana para abrir uma nova conversa — ele já sabe tudo sobre seu negócio.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 4 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-shared">4</div>
+      <div class="step-title">Gere o dashboard visual das suas campanhas</div>
+    </div>
+    <div class="step-body">
+      <div class="shared-badge">✦ Mesmo para Claude e ChatGPT</div>
+      <p>Acesse a planilha de exemplo abaixo, copie os dados e cole na conversa. Em seguida, envie o prompt para gerar seu dashboard:</p>
+
+      <div class="download-section">
+        <h4>📊 Planilha de exemplo — Campanhas Meta Ads</h4>
+        <a class="download-btn" style="display:flex;align-items:center;gap:10px;background:white;border:1px solid #c3e6cb;border-radius:10px;padding:12px 16px;text-decoration:none;color:#1a6b3c;font-size:13px;font-weight:500;margin-top:8px;" href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,UEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAAaAAAAeGwvX3JlbHMvd29ya2Jvb2sueG1sLnJlbHO9lEFqwzAQRfc5hZh9LdtJ01IsZxMK2bbpAYQ9tkxsSUiTtrl91aY0DgTRhfFKzJfm/4cYpth8Dj17R+c7owVkSQoMdWXqTrcC3vbPd4+wKRfFC/aSwhOvOutZ6NFegCKyT5z7SuEgfWIs6nDTGDdICqVruZXVQbbI8zRdczf2gPLKk+1qAW5XZ8D2J4v/8TZN01W4NdVxQE03IjiFXgyG0rVIAn7Ks5glwQz4bYZ8SgZPpx79BeJcx+KXU8Z/GHfwCpEuBH9SgPs+on+xmhkmj8HczwyzjMGsZ4ZZxWAeJh1ZJR3Wr+TCDhhP7lj+hVkU/GozlF9QSwcIVESKRfYAAABQBAAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAAPAAAAeGwvd29ya2Jvb2sueG1sjVRLbtswEN33FAT3jiT/ahuRg1S2kQD9BHaarClqFLGmSIGk/GnRwxRd9A7d+mId0XbqpoXRhSSSM3zz5s2MLq82pSQrMFZoFdPoIqQEFNeZUE8x/Xg/aw0osY6pjEmtIKZbsPRq/Opyrc0y1XpJ8L6yMS2cq0ZBYHkBJbMXugKFllybkjncmqfAVgZYZgsAV8qgHYb9oGRC0T3CyPwPhs5zwWGieV2CcnsQA5I5ZG8LUVk6vsyFhId9QoRV1XtWIu2ESU6D8TPtO0NSxpd1NUPvmOZMWsBEC73+kH4C7jAjJiUlGXMQDcPu0eUPCO3QE8PgYXPwIGBtf9ubrUe80UZ81soxueBGSxlTZ+pDNCTqBP+XZdEIdc9SezzcPAqV6XVMsUTbk/XaLx9F5gosYL8z6B7PbkA8FS6mg2jYpsSxdN4IFdNeiNdyYazzQTwKw0xWgPGaHSYUnGTka3b8EuUFnYOtS02mG+A13tQNabTeZsjBd4xDp5WwIpXI3YwEGsxt1mmwT3ESVlZMFcySCaBCBcuYPcFqn8HqvsS6VrtvUlgglTbkbvczlYKfEuucAeu9BJuutKx3P3bfNVlgOyomT5C6Z5D6Xr6jZlhbjs0mHBj0T3StUO+oKYCB/J3OGtoo2MH+3ImH/QSkY1iRizAMowYXNu6tdf57mBupcf3X7EiRGthPix8cSmojYvrldb/dTwb9dqt9HXVaUTTttd50ur3WbDqbYZskk2Q4+4pD5FFH+CR7/tYZ/CPMIV9ssZE3KM+Gg7z2nAJ02789teA4AONfUEsHCNgItGFVAgAAXQQAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAEwAAAHhsL3RoZW1lL3RoZW1lMS54bWzNV8Fy2yAQvfcrGO4Jkiw5sid2Dkk9PXSmM036AQghiQYhDdCk/vsisCUUOa7TOp36gGF5vF0e7GJf3/ysOXiiUrFGrGB4GUBABWlyJsoV/PawuUghUBqLHPNG0BXcUgVv1h+u8VJXtKbALBdqiVew0rpdIqSIMWN12bRUmLmikTXWZihLlEv8bGhrjqIgmKMaMwF36+Up65uiYITeNeRHTYV2JJJyrE3oqmKtgkDg2sT4xQLBQxcgXO9D/chpt051BsLlPbHx+yssNn8Muy8ly+yWS/CE+QoG9gPR+hr1AK6nuMJ+drgdIH+MJriwiBdXec8XOb4pjlJKaNjzWQAmxOxi6jsu0jDbc3og151ykyAJ4jHe459N8Issy5LFCD8b8PEEnwbzGEcjfDzgk2n8mZmZj/DJgJ9Ptb5azOMx3oIqzsTjwRPsT6aHFA3/dBCeGni6P/ABhbyb49YL/do9qvH3Rm4MwB6uuaQC6G1LC0wM7hbXmWQYgpZpUm1wzfjWBAkBqbBUVJsr0jnHS4q9Vc5E1AsTeuGsZuKYZ86M6/N5HpwhXxArT+0PGOf3esvpZ2UDUw1n+cYY7cDCevnbynShZexn3MhfVEo89NWOtlSgbVS3oyO8piIwoZ0t8VJ77KxUPuGsA55KOrs6jTR0heVE1jA5xoo8Fcx1Bbir4OE8ci6AIpjTvD9ezTj9SokG3J6+tq20bda1zstI4r+QW1U4pzu9w9OkSX+vjMe6mJ1PcJ82PoPiwZ8pjqY5w8V4BJ5NiEmUmOzFrSmJJtlNt26NUyVKCDAvzaNOtNtXK5W+w6pyW7OptH9axMAXJXEX/PkIZ2l4HkL0UgBaFEbPVyzD0Mw5koOz5wejQ5Fl5eY/LYDxiQUwfkupivelapxOi3fJ0ujoDvwsbbGuQNeYO8ck4e6p7tLsodnnpnsQuvy8cDWoS9Kd0SRqmHreOqp/X00HmdMTz+6Ngs7eSdDkgJ7JGeRE0/xCo58faPIfYG9Z/wJQSwcIO6HfCvQCAAACDQAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAANAAAAeGwvc3R5bGVzLnhtbO1bW5ObNhR+769g2LYvbRZh7o3tzC5rOn3pZJLNTGeaPmAj20wAuUJO7Pz6SghzMWiXXTu2N8WeXeAcnXM+fToSkkHDN5s4kj5DnIYoGcnqNZAlmMxQECaLkfzh3ntly1JK/CTwI5TAkbyFqfxm/MMwJdsIvl9CSCTqIUlH8pKQ1W+Kks6WMPbTa7SCCdXMEY59Qi/xQklXGPpByoziSBkAYCqxHybyeJisYy8mqTRD64SMZKMQSfzwR0CxmboscXcuCiiU32ECsR/JSmtho17453/XiLx+96PET65+vboC1wAIjM268cdfaNmfXn98lR3YP4GdVbfLogiK2vWiDEzmVcm5GA/nKCkpUXWZS8bD9Kv02Y+oSGXlZyhCWCKUdOolkyR+DHkJ14/CKQ6ZcO7HYbTl4kFmt/RxSluPu8oic/d7QUDd5Q0OOeVVh+DCzKdcQfAaMl3hTS8Jw4vpSPbyT9cgj3AWCsKCRlhDNyfWzZHCimrbDHvU2grCOt82ai3MSWthWJ5qnTqqemtMBp07wTMTRTtLt2hW9hS9ohn11lJd1T04anZgo3YYReWorcpcMh6ufEIgTjx6IeXn99sVHbMTel/lfrJyj5ReYH+rDozuBimKwoChWLi1xLrRXGPC3EzrCs3SLT1reqXi88BoE3dCQ7ZE84Cne/aRow1cw7NvWqKVCXbEaCVhUxHFR4xWEjYVUXzMaJ7nuHpbu3mT28nR61aMOqfIkontGRPndEzuCHtatOxAh5UpwgGdpe8GFjYb5CIpCP0FSvzow2okz/0ohXIhukNfkp1wPIzgnNAwOFws2ZGgFUODCEExPdnZMCDc81EjSNmCYSTHMAjXsSy83yi8+MnwkGW2AKmhcb07+849AZrOpNCyjzRVfkIzZQaj6D3z+9e8SBc6hRgPN/PmairJLuiij6VZfso95Rf+ahVtPcScZLdSLrjNitREN1G4SGK4V/AtRgTOSLa4zMTjob8rKC0RDr9S1+xWusgXc2wtSsIZE/H6yhKBG/IOEZ97oZi+YH91T4UF32ESZIGpLl3iMPl0j7ywUFOaVgUMKUKzTzDYgVyGATWtlFQ28z2mQMmT+lyecpz7RFXFVaZ2GfNywAx6MAIwz+5bPZgeTA+mB9ODeQ4YXbukO6WuXhQa/aLQDC4JjXNmMEp1+s4n89V5vPncefxm3oReBXQg9pc2qa/Rppe0DTrQdug66GHOZlQAcZWyneSSKDNKyrSesk6UmSVlek9ZJ8qskjKjSpn6YijjkU7HmF0yZlYZG5yDsZbh/1IoM3rKnkqZ2VN2QMd0Ssqss1P2Mkb/SpbZZ6fsgrPM6ik7zljWU9atY6qVdaZzds4ueDBrn2X0afYAZXY/yzikZ6r9TxlP5mzQ/5ZxrIV5d8oEvzN+Zyvz9qlZP5o9+QbQ3zM7DmZayZkKzk7ayx7NtAMp+64fmoCnkdb2rOn/wprx7VPte+udVk/ZATfOnjIBZUr+PL3ylmzxbJ09Wi+kEtsLMpL/ZDv0ogpr03UYkTDhV0rTwEVx7O/Kq0bNQBMaSH+Dfwojs2ZkthqtMYbJbFvYWDUb/SGbWiy7Zme12b2FmLVXYeLUTPhGlJLM/BVmemRNt4GBm1/ixbT22jvIPsx6X1O+9tzUiGwAYH/tGqYTxREhENkwebvGFtan3MLVhs1u1djAFnizhTZM3q5xAfuK4rTbOPTTXlPH0TTTFDCa7xbZ15R7LfY1pgmAyJsIW7m/p1HT4s397lyLW1ucIQ/ngahNxdkrqqk4ewFwXQHqYrNMoxWKrSbNmu52pzRbWxgn07W2givKHa5r07CcarfRNNdtj8Pii3qwWOM4Ak2xwXNfU24bayAw2be11xebv5r1cZz2jAdA09qxaZpIU+5e7N5PmTdBK5Sb//bGb2U3rivlzv/xf1BLBwgEZUlfowUAAD5AAABQSwMEFAAICAgAkWWsXAAAAAAAAAAAAAAAABgAAAB4bC93b3Jrc2hlZXRzL3NoZWV0MS54bWy9WN9zozYQfu9fwfB+BoGNccb2zZ1/tJ3JNTfNXW+mbwrIsSaAqJDtJH99VxJgIYib6eTyksDqY/fbb1cy7PzjY545R8IryoqFi0a+65AiYSkt7hfu92/bD7HrVAIXKc5YQRbuE6ncj8tf5ifGH6o9IcIBB0W1cPdClFeeVyV7kuNqxEpSwMqO8RwLuOX3XlVyglP1UJ55ge9HXo5p4WoPV/w1PthuRxOyZskhJ4XQTjjJsAD61Z6WVePtMX2Vv5TjE6Ta8DEorvVK6w+Ne/5ymnBWsZ0YJSyvqfWznHmzTp6PPPh/ntAEUj1SWamgcZYnr8kyx/zhUH4A3yUodUczKp5Uwu5yrvx/5c6OZoLwLyyFIu9wVhFYK/E9uSXie6nWxTf2FQzNsrece/XDy3lKoR6SmcPJbuF+QldbFEqIQvxFyakyrp1qz05bIHjIcNX4U8ZfOU2vaUG61j/ZacWy30ANaNSFK/ihXvibgGyNgdP7PXC8JjvRPi3w3S3JSCJIaj53cxAZRLl9yu9Y1jpIyQ4fMiE5QDjGG/sRKC/cQgqagUtWyhArkmUyUddJJPZ38B+NXeeZsfw2wRnIhHzfuP9DPW5bpaDX+IkdlC71qtxbd4w9SJP068syqSykwCWW+7Bm4ToYrEdyZnO+14861T91Sc4Vk47N66Y2W9UzUOxaCVDhB03FfuHGo2g6i+LppFUJavIbkYoDabA+QyWa+1p7pkW+JkeSAVqRMW3gXefmdYIv5yBopf5KaTNcVrJ4tdPkUAmW16x0efY0TUkxGFbFzPEjcIT/tFD/K/EkyyOF1m6CWErztvGiOl4wEA+peJ5OUx82WODlnLOTwxVFHVUr0gaS0oZoNOkx0OhGfU2yx6qXGmQso8meqVRQeLYC63Hpz72j5FcjPjcIrzasbMPaNmxsw9YweJBnm2xwIVk0e/NkA0UjMJJFVrINok3WNqxtw8Y2bA1DJ9nwQrKz0fTtku1EHV+IGqC3DKs1HqvsQ0PjwNK4QbQa24a1bdjYhq1h6GQ7uZTt+I1TnSgSYyPV0Eq1jxh3Eas+YtJFrPuIqIvY9BHTLmLbR8QtoqNf9L4bMlK8JgavmaWgRkQKUWjm04l1RK36oJnvW6C1Bk0N0Ad/5AexJaaGxeYZYXna9lkjNCzn9H3lnCpiM5OYvfk0BPmGDKENWg2BenrWIGSAQE+rvzc1qnPmWrtkO0B7PKxn/L56xv1CW7vzc9xrvSAe+RZq1UeFtpxxrz1Bzcje6vEr5BxgHQ3LOXtfOWf9OlsH1WcNQWFHBhRbMqwGYVYXr2f9BpU73gq5mf33hh8g/sL5KffMe0oq49nFto/QGoPGhhAT69hbDYEiu0drkH2GhlYHbmrcRU0HmAf+C6Jeeif+GaKiXr0D+0WxxnTOyKmt6QAmsiVFQ8coiuwubXAXd/4Q8eAFTd/51RsF/XLbb0s1xjwmx8EotFUdQNnvTDXGPk1tTYPXaDpA/IVfJ3TpDf9naBr2y23/PtWYzlEZjEfIFnUIFtuqhoO9Gs5sXcPX6DpA3v6Z8ozP45zwezXYqECQQyG/hl3Dakye5EeBbQ+utsGQfXwFnxLyI+LsfjkvOS3ETammis6eYDkOPY+k7ntDqtZyS9oq7hmnz6wQOFuRQhBuDBWOhAua9Bc8PXL7gvk9hcCZmmT56guN6wbRN4KV6ov9jgloHnW5V8MxCZggFCPkB2EUBP4YNsCOMTG85LUjvkPplLgk/JY+E1WSyphhqdFfPQJB9W07+3Ed6eKGq+gpOxXf9qS4gQyhjzmFBNVsduGWjAuOqQDWGU4ePhXpjz0V7TTRSTk25nYJ1GHFcjnkreToregIui4pFF9Sa5Q8WxJWUtKMGrQqWyWAk9LdDtQuxJby6hyqNd+k6eZ43prLOUtTPXOE7jCu4VJ71Ob22gwGt+2EfPkvUEsHCMw2CTawBQAAZRcAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQyLnhtbL1Z23KjOBB936+geJp9GHMxxthleyqxja/ZTE3mUrVvCsgxFUCskJ3L168uGLCkzbi2UnlJTHM43eo+3djS6MtzlhpHiMsE5WPT6dimAfMIxUn+MDZ/fA8/B6ZREpDHIEU5HJsvsDS/TP4YPSH8WO4hJAYlyMuxuSekGFpWGe1hBsoOKmBO7+wQzgChl/jBKgsMQcwfylLLtW3fykCSm4JhiC/hQLtdEsEZig4ZzIkgwTAFhIZf7pOiPLE9xxfxxRg80aWe4mmFOBN3aj7HU/iyJMKoRDvSiVBWhaaucmANztb5jN3/x+T06FKPCauUeyLLoktWmQH8eCg+U+6CZuo+SRPywhdsTkac/ys2dklKIL5BMS3yDqQlpPcK8ADvIPlR8PvkO/pKDafb1mRkVQ9PRnFC68EiMzDcjc0rZ7gdMAQH/EzgU9n6bJR79BTS+A4pKE903LjASbxNcnhu/Yaepihd0mRQnY5Ngg/Vjb8hzdrJgJOHPQ1xC3ekfpqA+zuYwojA+Izx9kBS6ubuJbtHac0Qwx04pIQFQf0hfLIfacxjM2cJTSknKpiPKUxTtlDTiBh2RR34nmm8IpTdRSClaXJsu3X9F39ctrKEbsELOvDEVHdZb90j9MhMjNdmZeLLYAkuAOvDKgrTANR6hE00zbV41Cj/qUrSVIwRtz+fihNyzdBiV5mgWfiVxGQ/NoOO3x/4Qb9XZ4kWZQlZymnQ1PpKS3G6rhKNRJK38AhTiubBtG2UXazNOnM+GdGElvwvS20KirJVvehQEpRVUYny7JM4hrnWLfeZgWcaI/2f5Px/SV5YeViiBY0bsNS8rz+38udq/Dn++/sbVP66On/e+/tz6oTaH7RC55RSR5dT1+byFtIRAxwQMBlh9GRgXnbhV6isdsXk2rWVCAT2pGcRpBKVsjS6YuaLdWEpuoI+XFLzceL2R9aRxVdhrmuMVVmmimWmWOaKJVQsC8WyVCwrxbJWLBvFsm1bLJrYOrvuG9l1gnfOriui8NvZDaTs1pg6u4plpljmiiVULAvFslQsK8WyViwbxbJtW86y231Lu/47Z7croui3szuQsqvBdO1zzFSHcc4xMx3GPcfMdZjuOSbUYbxzzEKDcSRfSx1P7xyz0mH8c8xa50vK4UbHI82IrQbTQM4k4r0hEdfpsNf2u6rE45G1B1xXbkENRMrBVEBEI+dV+W1JSDMBYlOkRg0CT4bNNTDX8yVUWKG8Fsru2K5U5IWGzJGVuVSjd72OK+lupfXoSlxrXfSyYjQYydm2gritpHu2XjG9D1ZMj4c2aEcmjYNrFaIoRkCcbjtPjiKZCmW3UL6jKGuugTk9eZCFFWrwG8loyAKpPEtd9PJ80bqTp8daF7o0hTYajCS7be9yvfgfrBdfGR+eFP21ClH04is96gQ9WS6+prE8dcJoYEEgTb3Q1w8YSSwaqp48XtTQu71OT/K30vqTX2xrjT9ZLRqI1J9bAQnaJenqxdL/YLH01eEi9d61BiK13rSvtucgkMXS13RV4Cti0cAcRw4q7Gtni/zVRcOlvIw0sXftji99U1ppHcozaK1xKOluo4FIKdj2Lx8uwQfrJVCHi9QP1xqI9PVsGigd6ruyXAJNW9EJpOhFg1PIwkA7XGypyAudT1kvauw9p+NLK1zpHUpaWOv8SXLRQGS5CIhrtzMe6OUy+GC5DERoTjs0+TdRhXGbX5yVpWnJnQEiUHPf/bj5NPWG0+DPkbXjLdZX3kwVhfcGxcwbzmoKz+mro+gCkrk3nNckvi+/acOKovcfFFc/59+uFvNPoTcMaxr22nOlrlpcEMvCGy5qkq4i3N9k9RTK0hsuG5Zux1O+mF+4ppU3XLXW5PTld+sFS1p7w3WTXqk+mwsINt5wUxPIvxLbyhNtYrX2vzKIH/hucEn1fchZh5gta7Ndz7eHZbs73ArehmYyKnCSk9uCH7kYewjYWVGzYf+gbOHXljtYN98e4eQV5QSkU5gTiFv7g0eISRKpNyxxHnED8ENCHad8n9/m3Y5FX4sLggq+33ePCO15/nHPjw4YoOc4gePYbtd3Xdujr6gdQkR/y6rPPw6FUYAC4rvkFfLpU7Y2+Pm5SLWb6VSX9ca4aTCKW8y9x+gp/76H+S1dIR0/OKEL5AdXY7NAmGCQEBp1CqLHqzz+tU9IfdRixBi0TjUiWocpytgJWMnOJfKzhM6KhO1p2k0mG0uEioRVhhdbZCXkCTDiZLej2c5JmOCycVWbb+N4fmwm6mSE4licyFB1tD7Tj4JRmOvPbWf0sj4+nPwLUEsHCCrj8By5BgAAghwAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQzLnhtbL1YXW/iOBR9318R5X3IBxBCBYymUJiVOtvRtrMj7ZubGGI1ibO2gba/fq/tEILtWVWrqi8luTm5H+ceu7mefX6uSu+AGSe0nvvRIPQ9XGc0J/Vu7v94WH9KfY8LVOeopDWe+y+Y+58Xv82OlD3xAmPhgYOaz/1CiOYqCHhW4ArxAW1wDU+2lFVIwC3bBbxhGOXqpaoM4jBMggqR2tcerthbfNDtlmR4RbN9hWuhnTBcIgHp84I0/OTtOX+Tv5yhI5R6yqeX4ko/6fxFI8tfRTJGOd2KQUarNjW7ymkwvajzmcX/z1M0hlIPRHYqPjmrsrdUWSH2tG8+ge8GmHokJREvqmB/MVP+vzNvS0qB2TeaQ5O3qOQYnjVoh++x+NGo5+KBfgfD6XGwmAXty4tZTqAfMjOP4e3c/xJdbVKJUIC/CD7y3rXHC3pcQ377EvGTO2XcMJLfkhpfWv+kxyUtvwIZoNO5L9i+ffA3BtZOBkZ2BaR4i7eie1ugx3tc4kzg/MLj3V6UEOb+pXqkZechx1u0L4VMAuJRdrIfIOe5X0tCS/BJGxljictSFup7mcT+DgGSke+9UlrdZ6gEmqIw7N3/oV43rZLQW/RC94qY9qlcW4+UPkmT9BvKNqkyJMENkuuwzcL3EFgP+JzN+V6/6vF/2pacOyYd969PzVkrzUCzWyaAhZ8kF8XcTwfJZJqkk3HHEjTlK5aUQ9JgfYVWnO5boqkm+RYfcAlolUzfBt51bcFF8MUMCOXqr6S2RA3vdS/bc0GrNivdnoLkOa6dYVXMCj1DjvBLavXLxYtsjyRau4mVVN83XtzGix3xouT94yVtvKEr3uj9403aeBMXn6GSmm6j3kyRQIsZo0ePqRboqLrjXSApnWFoxdfYk7Z0ilZOVmFQr4wlVwTXCoWXOZgPi3E4Cw4yvxZz3WGC1rK0LCvLcmNZ1pZl07cEUH7HQfyRHMQ6i0mfg8jgwIEZGpilCzO9xKxcmPEl5saFGV1i1g7MyPCzcdUVd5gLvof/wXccDeS+9q6UD1Vq035mQ4NxDYmGClMrTJyGhjaXLSrsoaaJwbnL03QQTQzaW9i0BwsHYZwazDthsdGfjaPAkZv60QdTP1KZXSx4QzjXGpL0Koym5q6w1KAo7aFSg4WV7SgeDmJj3dy0nkaXxJvLa+2ExQbvjuoSN+/jD+Z9bCvCUOD12BbqNDV5H9uKHxosrByOhuEgMZbYzdipeHOrcaJic7NxlPcLwScfTHxiS8JY09eJLfgkNolPbMEnJvG2ozgZRCbviVPwkbnTOGGRSbyjvKmb+MkHEz+xJJGYnxYTW6gTS/ETW/HmfrtyOBrGA/M/68S9xRtdXDthZhc3dnm/Ij79YOJTSxKJ+T2TWkK1BZ/ago9M3m0/o9EgNr56blK34E3e3TBjl9w4qjO/aoLeV3WF2U7NexwI29dyHvN71vNArgfAMxzme0ZqcdeowxOvgPma1Lvz6L2zhvHOco+7rhWUkVdaC1QucS0w680WB8wEyewHgT5Z+IbYjkDgUk3soZIJ04LQNzDjqmnhkQoQi7os1CGABIyjKI2iMB4mcRyOQKtbSoX7UdCdZOwbGJ8bzO7JK1bS5r1RXZ1wtJNQ1N52I67vSRd3TEXP6bF+KHB9BxWCbhmBAtUR1NxvKBMMERjMH0uUPX2p858FEd2hiZcz1DufyKAPS1rJsywuTxjqC0JXDZHTQHhm8mzJaENkZ1RTNStrRYCXk+0W2K7FmjB+DtWZ7/L85nBeiosZzXN9tgLq6F3Dpfaozd11PxjcdgeBi38BUEsHCCKRnepIBQAATBQAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAGAAAAHhsL3dvcmtzaGVldHMvc2hlZXQ0LnhtbL1Y227bOBB9368Q9NR9qHWzJNuwXSS+tUC6KZpegH1jJMomIolairaTfP0OSVmWKW4bLIK8JNLw6MzMmaGs4fTDY5FbB8xqQsuZ7Q1c28JlQlNSbmf292/r9yPbqjkqU5TTEs/sJ1zbH+Z/TI+UPdQ7jLkFBGU9s3ecVxPHqZMdLlA9oBUuYSWjrEAcbtnWqSuGUSofKnLHd93IKRApbcUwYS/hoFlGErykyb7AJVckDOeIQ/j1jlT1ie0xfRFfytARUj3F0wlxqVZaPm/Y4ytIwmhNMz5IaNGE1s9y7Iwv8nxk/v9j8kJI9UBEpfwTWZG8JMsCsYd99R64K1DqnuSEP8mE7flU8n9hVkZyjtlnmkKRM5TXGNYqtMV3mH+v5Dr/Rr+A4bTszKdO8/B8mhKoh4jMYjib2VfeZBMLhAT8IPhYd66tekePa4hvn6P6RCeNG0bSG1LiS+tXelzQ/COIAX06sznbNwt/Y1DtZGBku4MQb3DG26c5ur/DOU44Ti8Yb/c8Bzd3T8U9zVuGFGdon3MRBPij7GQ/QMwzuxSC5sBJK+FjgfNcJGpbicB+AgfR0LaeKS3uEpSDTJ7rdu7/ko/rViHoDXqieylMsyr21j2lD8IkeF1RJpmGELhCYh82UdgWAusBn6M536tHrfqfpiTnigni7vWpOGvZM1DsRglQ4SdJ+W5mjwZRPI5GcdiqBEX5iIXkEDRYn6EUp/tGaKpEvsEHnANaBtO1AbvKzblwPp+CoLX8K6TNUVV3qpfsa06LJipVnh1JU1wa3UqfBXqEGOE/KeX/mj+J8gihFY3vCmle15/f+PMN/rzR6/sLG3+Byd/w9f1Fjb/I5C96fX9x4y/+z/o5qm3UyxtxNJ8yerSYLLnyqjqsdSRaNXB7/hX21MsqxF5MvcQgX+FL7MBa7Qh4uAbzYR4FU+cg4msw1y3GaSyLnmXZs6x6lnXPsulaHEi/1cD/hQZ+PBD7+lVl8FUgcVeGoSaDARN4l5iFCTO+xCxNmPASszJhtHjWppg1no0JE7WYC8mDX0nuvb7kgQxt3I0s1hRXEC+QmFJivPHI1TRvUG4HpdduaWAK3MFYg60a2LgDcweur1V5bfDoaZiNIb2RWfjhGws/lJFd7HitRa8VJOrk5/tDXXcFgh+HM2rka7obiOJBoKFWDdNQk11veINDT2/4fnKxa5Y9fGPZw15DxFrPXIf9LvUDT9c97HffSH/HmJjCwTjShA/N/a7B1gaP3kgT3pCebxY+emPho35L6L9wkaHffV33qN9+sfbGWhqIRoOR5m4Vmftdg60NDj1tT2wMyQ3NssdvLHssI/O9TmhD/T3TYM5tmsE8gFqmu++f310Hk+voz6mTyT6PQ70qDcXwFxSLYLJoKQJPf0f9JoirH6uvV5vVu2UwWbYsUFU/8vVf7YYp/A3TKpisWiZZeI1o/YKk1sFk3ZKE+m5sxW8/rJzOh2aB2VaOXDWUb1+KkcjuWM8zsXr+DIcRm5GS31by/MLawYhLyu15+t325uHWAnN5+wFNGXmmJUf5ApcwxHc+tw+YcZL0Fxw13H9GbEvAcS6HZlc2LVPtqW5gzJQf0PeUQ+vKy52cwwUg9LyR54HcEWzuIUiUUcrNS057mLCvYIKtMLsjz1i+3+rOtCwPGZrhwGtu2ynTtgTFLZPeU3osv+1weQsZwi5iBBKUp0Azu6KMM0RgNr7PUfJwVaY/d4S35xZWylDniCCBOixoIY6TajHklxeCLisihgT3rOTZktCKiMrIoipV1lIAKyVZBmqXfE1YfXbVmm/TdHU4vxjmU5qm6ngDuqNzDZeKUZnb664zuG3P4ub/AlBLBwi+tt9hZwUAAM8TAABQSwMEFAAICAgAkWWsXAAAAAAAAAAAAAAAABQAAAB4bC9zaGFyZWRTdHJpbmdzLnhtbLVXzW4bNxC+9ykGQgu4gO1dyT8JDFkGvZIdoZKlSooPvVG7tMxml1RIruAUOQQI0KKHAkWTUy9G2kPQAj6lvfS6b+InyCN0uCvIOhWjAAV8WNscfvPzzTfD5slNlsJCGCu1Oq7Vd8MaCBXrRKrZce3p5GzncQ2s4yrhqVbiuPZC2NpJ67OmtQ7QVNnj2rVz86MgsPG1yLjd1XOh8D9X2mTc4a9mFti5ETyx10K4LA0aYXgYZFyqGsQ6Vw5hQ4TNlXyei6j6y6ODWqtpZatZohzZOY8RHK+xwixErTXq9NikeDPqDqDdgWFndDYY9dlF1IH7V28hYv0hu3jCxtDvTBiw9rgZuFYz8Bf+x6VsrlNuoJsVHxZC2vKqM8PV81xyiIRyRsNLGApT3OlEHwGbGplCI2wckq7/ati1cN4Zse4Y2gPvdPHToD0g2XZVImOeaEM6fYnFop3sC8eJVxrJi/fF7xoWFvrFnxaYcrsk27HjLreko4Op/6iAiIlZCOtkhtXRMNGOp7A1+vxLku3H29t3wJxQdLh2xYJEgzbFe17Ckgx7vgHgXBgsIi0V6N1v4OsDU+5kQisTi2XGIeGQeUN0z/KUZBjlFhM41wa8p7AVDXu0JOJB4FMub8qspDKTTpAMJ/wGPRUQaeX1xzPLQ99//8ultJJIS7ZErgKmMbm8Hek7E6hqCadVY2iKDzcy2wwKQ3OGO41g1kpFLn1fpNdYicx3GSbVGeS3dYaWV1+QfvFHIjUMtXFcEgOszoK4krFEWgua2RpayVWWUEOsDmMyy1hjrohMbaOk956wfudigiI6GK3UvtTr/0HwN5T5C50Jz5KIZ3OurmlMGUy/FU4uPkHzyGrXzfy3Lf6mVjb185h4djIis4XscCkQXh12P0EYVq1HO83nbjnd2JxjI5S5tUsO0AWeLuwMq02M5MG3iFsUrm+04jDOibr+YL2ieYQMNbGkKkM5Joc8t9yckAxG2NtmhnxWM6hK5uUExtTJ8DARiCFWjQan2Lp+cYVlX29QPZaiAMU09z7evv1rmQ8ajwcoWBCgTP7Y7jKaGK8ttF7ixp1zr3es+KF4XW28xa+nvW5EWx6HxT/TVMa0THyd8xS3DRzMSTWQieNRz40UrnhnJPbN3sHOwQFwpe02RLmRTk5pZL+/+3n1AywlNnsX+eW1zQ9YEBnIdUHvaf0MQ3omoP7FZj5Ug43vkP1YJ76HXiM/JtNS+X9qNK5g5UNmmTsQYMRMYkdsw164cxiWud0gmmUoG2VTHK0SuQ1ybeZswxUuM7g1U3enJf/gCslRxoUdm+I1FmtlxcxfusHK78M5xbWPFk3nctB7WvXNuIMdha3oPWCno26PPtTH+LRVG+2X1OcO8QlV4kMdtsL6/as34aMg3CeOfVXcxZh2bGi/T27DQqc5biiYdOIbcYndQOzHiF3fJ2Mv91hbXYAt4D3YBHMPtuoHiNmokzFX0yB+mHz4hQ82ZK/8jhMfUksH9mGr0UAH9kKyA2cCX8oYq0Q/YqdzGItZMBFruQ6sda1/AVBLBwjdwt+egwQAAHoRAABQSwMEFAAICAgAkWWsXAAAAAAAAAAAAAAAAAsAAABfcmVscy8ucmVsc62SwU7DMAyG73uKKvc13UAIoaa7TEi7ITQewCRuG7WJo8SD8vZEExIMjbLDjnF+f/5ipd5MbizeMCZLXolVWYkCvSZjfafEy/5xeS82zaJ+xhE4R1JvQypyj09K9MzhQcqke3SQSgro801L0QHnY+xkAD1Ah3JdVXcy/mSI5oRZ7IwScWdWoth/BLyETW1rNW5JHxx6PjPiVyKTIXbISkyjfKc4vBINZYYKed5lfbnL3++UDhkMMEhNEZch5u7IFtO3jiH9lMvpmJgTurnmcnBi9AbNvBKEMGd0e00jfUhM7p8VHTNfSotanvzL5hNQSwcIhZo0mu4AAADOAgAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAARAAAAZG9jUHJvcHMvY29yZS54bWydUstugzAQvPcrkO9gIGlUISBSW+XUSJWSqlVvrtkQt7axbCeEv68Ngb5y6m13Zjz7cr48CR4cQRvWyAIlUYwCkLSpmKwL9LRdhTcoMJbIivBGQoE6MGhZXuVUZbTR8KgbBdoyMIEzkiajqkB7a1WGsaF7EMRETiEduWu0INalusaK0A9SA07jeIEFWFIRS7A3DNXkiM6WFZ0s1UHz3qCiGDgIkNbgJErwl9aCFubig575phTMdgouSkdyUp8Mm4Rt20btrJe6/hP8sn7Y9KOGTPpVUUBlfm4koxqIhSpwBtlQbmSeZ3f32xUq0zhdhPF1mKTbJM3m8yydveb413tvOMSNLv1CVXfiXjWBXlCBoZop625Z9uQPwOWcyPrgFl+CDJ82vWSC/Ek5MXbtjr9jUN12zuMCNnYmzti/RxsN+soajsz/wTLui06p79oc3t6B2mGkKXGxZZbDAI/hn39ZfgJQSwcIxMO8cmIBAADjAgAAUEsDBBQACAgIAJFlrFwAAAAAAAAAAAAAAAAQAAAAZG9jUHJvcHMvYXBwLnhtbJ2QwW7CMAyG73uKKuLaJkQdQygN2jTthLQdOrRblSUuZGqTqHFRefsF0IDzfLJ/W5/tX6ynvssOMETrXUXmBSMZOO2NdbuKfNZv+ZJkEZUzqvMOKnKESNbyQXwMPsCAFmKWCC5WZI8YVpRGvYdexSK1Xeq0fugVpnLYUd+2VsOr12MPDilnbEFhQnAGTB6uQHIhrg74X6jx+nRf3NbHkHhS1NCHTiFIQW9p7VF1te1BsiRfC/EcQme1wuSI3NjvAd7PKygvC148FXy2sW6cmq/lolmU2d1Ek374AY205Gz2MtrO5FzQe9yJvb2YLeePBUtxHvjTBL35Kn8BUEsHCF6WAY/7AAAAnAEAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAEwAAAGRvY1Byb3BzL2N1c3RvbS54bWydzrEKwjAUheHdpwjZ21QHkdK0izg7VPeQ3rYBc2/ITYt9eyOC7o6HHz5O0z39Q6wQ2RFquS8rKQAtDQ4nLW/9pThJwcngYB6EoOUGLLt211wjBYjJAYssIGs5pxRqpdjO4A2XOWMuI0VvUp5xUjSOzsKZ7OIBkzpU1VHZhRP5Inw5+fHqNf1LDmTf7/jebyF7baN+Z9sXUEsHCOHWAICXAAAA8QAAAFBLAwQUAAgICACRZaxcAAAAAAAAAAAAAAAAEwAAAFtDb250ZW50X1R5cGVzXS54bWzNVclOwzAQvfcrolxR4rYghFDSHliOUIlyRsaeNKbxItst7d8zSaAqpQtRKuglVjzzlhnZ42S4kEUwB+uEVmnYi7thAIppLtQkDZ/H99FVOBx0kvHSgAswV7k0zL0314Q4loOkLtYGFEYybSX1+GsnxFA2pRMg/W73kjCtPCgf+ZIjHCS3kNFZ4YO7BW7XuggPg5s6r5RKQ2pMIRj1GCZllGzFWSjcHuBc8Q130aezGJFVjsuFcWe7FYyabAgIWVZW7m9HvBnYDqkCiHnEdlvBIRhR6x+oxASyKMhLWQx513b6qvU0RkvxkcvbIbwu2UxNZ5lgwDWbSYTEzlig3OUAHs1XayypUAf0PR4jqL+91h4qmgOCzi8LcMcutyL9RasrgCPV0r7e7yZW/A199E/Ex/mJ+Lj4Jx8upxb4k7c4fo9+QNe59/moB9FfDB90OrLaOHwiLDQv90uvREcGicB6sf8OrhSRunV/oRz6HHhTbTZzXsvW8jXNT/FOQqrnevABUEsHCFJ9oyuBAQAA3QcAAFBLAQIUABQACAgIAJFlrFxURIpF9gAAAFAEAAAaAAAAAAAAAAAAAAAAAAAAAAB4bC9fcmVscy93b3JrYm9vay54bWwucmVsc1BLAQIUABQACAgIAJFlrFzYCLRhVQIAAF0EAAAPAAAAAAAAAAAAAAAAAD4BAAB4bC93b3JrYm9vay54bWxQSwECFAAUAAgICACRZaxcO6HfCvQCAAACDQAAEwAAAAAAAAAAAAAAAADQAwAAeGwvdGhlbWUvdGhlbWUxLnhtbFBLAQIUABQACAgIAJFlrFwEZUlfowUAAD5AAAANAAAAAAAAAAAAAAAAAAUHAAB4bC9zdHlsZXMueG1sUEsBAhQAFAAICAgAkWWsXMw2CTawBQAAZRcAABgAAAAAAAAAAAAAAAAA4wwAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUABQACAgIAJFlrFwq4/AcuQYAAIIcAAAYAAAAAAAAAAAAAAAAANkSAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAAUAAgICACRZaxcIpGd6kgFAABMFAAAGAAAAAAAAAAAAAAAAADYGQAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQAFAAICAgAkWWsXL6232FnBQAAzxMAABgAAAAAAAAAAAAAAAAAZh8AAHhsL3dvcmtzaGVldHMvc2hlZXQ0LnhtbFBLAQIUABQACAgIAJFlrFzdwt+egwQAAHoRAAAUAAAAAAAAAAAAAAAAABMlAAB4bC9zaGFyZWRTdHJpbmdzLnhtbFBLAQIUABQACAgIAJFlrFyFmjSa7gAAAM4CAAALAAAAAAAAAAAAAAAAANgpAABfcmVscy8ucmVsc1BLAQIUABQACAgIAJFlrFzEw7xyYgEAAOMCAAARAAAAAAAAAAAAAAAAAP8qAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUABQACAgIAJFlrFxelgGP+wAAAJwBAAAQAAAAAAAAAAAAAAAAAKAsAABkb2NQcm9wcy9hcHAueG1sUEsBAhQAFAAICAgAkWWsXOHWAICXAAAA8QAAABMAAAAAAAAAAAAAAAAA2S0AAGRvY1Byb3BzL2N1c3RvbS54bWxQSwECFAAUAAgICACRZaxcUn2jK4EBAADdBwAAEwAAAAAAAAAAAAAAAACxLgAAW0NvbnRlbnRfVHlwZXNdLnhtbFBLBQYAAAAADgAOAJMDAABzMAAAAAA=" download="campanhas_meta_apolar.xlsx">
+          <span style="font-size:20px;">📥</span>
+          <div>
+            <div>Campanhas Meta Ads — Apolar (fictícia)</div>
+            <div style="font-size:11px;color:#6b6b6b;margin-top:2px;">Excel · Baixe, abra e copie os dados para a conversa</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="note">Como exportar do Meta Ads real: Gerenciador de Anúncios → Campanhas → Exportar → CSV. Depois cole o conteúdo direto na conversa antes do prompt abaixo.</div>
+
+      <div class="prompt-wrap">
+        <div class="prompt-label label-shared">
+          <span>▶ PROMPT — DASHBOARD DE MARKETING</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-dash-g')">Copiar</button>
+        </div>
+        <div class="prompt-text" id="prompt-dash-g">Com base nos dados de campanha acima, gere uma análise completa de marketing e entregue em HTML com visual moderno e profissional.
+
+A análise deve conter:
+
+1. SAÚDE GERAL DAS CAMPANHAS
+   Status geral: Saudável / Atenção / Crítico — com justificativa clara.
+
+2. PERFORMANCE POR CAMPANHA
+   Classifique cada campanha como Verde (ótima), Amarela (atenção) ou Vermelha (pausar), com barra de progresso do CPL vs meta.
+
+3. AS 2 CAMPANHAS MAIS EFICIENTES
+   Quais estão trazendo lead mais barato e com melhor qualidade — e por quê.
+
+4. AS 2 CAMPANHAS PARA REVISAR OU PAUSAR
+   Quais estão queimando orçamento sem resultado — com recomendação clara de ação.
+
+5. ONDE COLOCAR O DINHEIRO
+   Sugestão de redistribuição de orçamento para o próximo mês com base nos dados.
+
+6. PLANO DE AÇÃO em 3 horizontes:
+   - Esta semana (ajustes imediatos)
+   - Próximas 2 semanas (otimizações)
+   - Próximo mês (mudanças estratégicas)
+
+7. PERGUNTA ESTRATÉGICA
+   Uma pergunta para o franqueado refletir sobre suas campanhas.
+
+FORMATO:
+Entregue em um único arquivo HTML com:
+- Cards coloridos por status (verde, amarelo, vermelho)
+- Barras de progresso de CPL atual vs meta
+- Gráfico simples de investimento vs leads por campanha
+- Seção de alertas e recomendações em destaque
+- Layout objetivo e visual, pronto para apresentar na reunião semanal</div>
+      </div>
+      <div class="note">Quando o HTML aparecer: selecione todo o conteúdo → copie → cole num bloco de notas → salve como "dashboard-marketing.html" → abra no navegador.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 4 CENÁRIOS -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num num-shared">4</div>
+      <div class="step-title">Use em perguntas do dia a dia</div>
+    </div>
+    <div class="step-body">
+      <div class="recorrente">
+        <h4>🔄 Rotina semanal recomendada</h4>
+        <p>Toda segunda-feira: exporte o relatório do Meta Ads em CSV → abra o GPT no ChatGPT → cole os dados → envie o prompt de análise. Em 2 minutos você sabe exatamente o que fazer na semana.</p>
+      </div>
+      <p>Além do dashboard, você pode usar o assistente para perguntas rápidas do dia a dia:</p>
+      <div class="scenarios">
+
+        <div class="scenario-card" onclick="toggleScenario(this)">
+          <div class="scenario-header sh-chatgpt">
+            <span>📉</span> CPL subiu e não sei por quê
+            <span class="scenario-toggle">▾</span>
+          </div>
+          <div class="scenario-body">
+            <div class="prompt-wrap">
+              <div class="prompt-label label-shared">
+                <span>▶ PROMPT</span>
+                <button class="copy-btn" onclick="copyPromptStop(event, this, 'sc1-g')">Copiar</button>
+              </div>
+              <div class="prompt-text" id="sc1-g">Meu CPL subiu de R$24 para R$38 essa semana. Não alterei nada nas campanhas. O que pode ter causado isso e o que devo fazer agora?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-card" onclick="toggleScenario(this)">
+          <div class="scenario-header sh-chatgpt">
+            <span>💰</span> Quero saber onde colocar mais dinheiro
+            <span class="scenario-toggle">▾</span>
+          </div>
+          <div class="scenario-body">
+            <div class="prompt-wrap">
+              <div class="prompt-label label-shared">
+                <span>▶ PROMPT</span>
+                <button class="copy-btn" onclick="copyPromptStop(event, this, 'sc2-g')">Copiar</button>
+              </div>
+              <div class="prompt-text" id="sc2-g">Tenho R$2.000 sobrando no meu orçamento de marketing esse mês. Minhas campanhas ativas são: Captação Apartamentos Centro (CPL R$24, 45 leads), Captação Casas Zona Sul (CPL R$31, 28 leads) e Retargeting Site (CPL R$29, 18 leads). Onde devo colocar esse dinheiro extra?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenario-card" onclick="toggleScenario(this)">
+          <div class="scenario-header sh-chatgpt">
+            <span>📊</span> Quero analisar minha campanha do mês
+            <span class="scenario-toggle">▾</span>
+          </div>
+          <div class="scenario-body">
+            <div class="prompt-wrap">
+              <div class="prompt-label label-shared">
+                <span>▶ PROMPT</span>
+                <button class="copy-btn" onclick="copyPromptStop(event, this, 'sc3-g')">Copiar</button>
+              </div>
+              <div class="prompt-text" id="sc3-g">Esse foi meu resultado do mês:
+- Investimento total: R$6.500
+- Leads gerados: 210
+- CPL médio: R$30,95
+- Visitas agendadas: 38
+- Contratos fechados: 5
+- Melhor campanha: Captação Apartamentos (CPL R$22)
+- Pior campanha: Branding Geral (CPL R$58, 0 contratos)
+
+Me dê uma análise completa e o que devo mudar no próximo mês.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="final-box">
+    <h3>Você agora tem um assistente de marketing</h3>
+    <p>Que já conhece sua loja e seu negócio</p>
+    <p>Que analisa suas campanhas e diz o que fazer</p>
+    <p>Que gera um dashboard visual em segundos</p>
+    <p class="highlight-line">Toda semana. Sem agência. Sem complicação.</p>
+  </div>
+
+</div><!-- fim tab chatgpt -->
+
+</div><!-- fim content -->
+
+<script>
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active-claude', 'active-chatgpt'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active-' + tab);
+}
+function toggleScenario(card) { card.classList.toggle('open'); }
+function copyPrompt(btn, id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copiado!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function copyPromptStop(event, btn, id) {
+  event.stopPropagation();
+  const el = document.getElementById(id);
+  if (!el) return;
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    btn.textContent = '✓ Copiado!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
